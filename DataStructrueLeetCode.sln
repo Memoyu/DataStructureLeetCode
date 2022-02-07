@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32127.271
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.链表", "1.链表", "{16082EB7-7294-43C8-9D61-A9B0249AD477}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "237. 删除链表中的节点", "LeetCode\1.链表\237. 删除链表中的节点\237. 删除链表中的节点.csproj", "{D1568583-B117-483A-95C8-F87B6EA7DC93}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D1568583-B117-483A-95C8-F87B6EA7DC93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D1568583-B117-483A-95C8-F87B6EA7DC93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D1568583-B117-483A-95C8-F87B6EA7DC93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D1568583-B117-483A-95C8-F87B6EA7DC93}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D1568583-B117-483A-95C8-F87B6EA7DC93} = {16082EB7-7294-43C8-9D61-A9B0249AD477}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {FF84AAD0-028F-4933-B6FF-E4B1D3022BAD}
+	EndGlobalSection
+EndGlobal
