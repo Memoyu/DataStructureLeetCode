@@ -5,7 +5,9 @@ VisualStudioVersion = 17.1.32127.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.链表", "1.链表", "{6BE31670-1988-4BD2-9533-03CF34110FC7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "237. 删除链表中的节点", "1.链表\237. 删除链表中的节点\237. 删除链表中的节点.csproj", "{DE4E4FCD-9F3C-46A6-B9E2-84446684CFD1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "链表.Test", "1.链表\链表.Test\链表.Test.csproj", "{2BBCC968-1788-4B95-8402-2C63BF65BD47}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "链表", "1.链表\链表\链表.csproj", "{99CBEE3D-F35A-4BDF-A539-D6307CC7D280}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,16 +15,21 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DE4E4FCD-9F3C-46A6-B9E2-84446684CFD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE4E4FCD-9F3C-46A6-B9E2-84446684CFD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DE4E4FCD-9F3C-46A6-B9E2-84446684CFD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DE4E4FCD-9F3C-46A6-B9E2-84446684CFD1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2BBCC968-1788-4B95-8402-2C63BF65BD47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2BBCC968-1788-4B95-8402-2C63BF65BD47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2BBCC968-1788-4B95-8402-2C63BF65BD47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2BBCC968-1788-4B95-8402-2C63BF65BD47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99CBEE3D-F35A-4BDF-A539-D6307CC7D280}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99CBEE3D-F35A-4BDF-A539-D6307CC7D280}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99CBEE3D-F35A-4BDF-A539-D6307CC7D280}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99CBEE3D-F35A-4BDF-A539-D6307CC7D280}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{DE4E4FCD-9F3C-46A6-B9E2-84446684CFD1} = {6BE31670-1988-4BD2-9533-03CF34110FC7}
+		{2BBCC968-1788-4B95-8402-2C63BF65BD47} = {6BE31670-1988-4BD2-9533-03CF34110FC7}
+		{99CBEE3D-F35A-4BDF-A539-D6307CC7D280} = {6BE31670-1988-4BD2-9533-03CF34110FC7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF84AAD0-028F-4933-B6FF-E4B1D3022BAD}
