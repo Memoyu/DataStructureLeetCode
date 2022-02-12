@@ -42,6 +42,20 @@ public class LinkedList
         size++;
     }
 
+    public void Add(ListNode node)
+    {
+        if (head == null)
+        {
+            //如果链表为空则作为头指针
+            head = node;
+        }
+        else
+        {
+            GetByIndex(size - 1).next = node;
+        }
+        size++;
+    }
+
     public ListNode Node(int index)
     {
         return GetByIndex(index);

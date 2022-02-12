@@ -5,6 +5,15 @@ namespace 链表.Test
     public class Test
     {
         [Fact]
+        public void _141_环形链表Test()
+        {
+            var linkedList = GetLinkedList();
+            linkedList.Add(new ListNode (6, linkedList.Node(1)));
+            var res = _141_环形链表.HasCycle(linkedList.Head);
+            Assert.True(res);
+        }
+
+        [Fact]
         public void _206_反转链表Test()
         {
             var linkedList = GetLinkedList();
