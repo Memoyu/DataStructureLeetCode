@@ -37,6 +37,14 @@ namespace 链表.Test
             Assert.Equal("[4, 1, 9]", linkedList.ToString());
         }
 
+        [Fact]
+        public void _876_链表的中间结点Test()
+        {
+            var linkedList = GetLinkedList();
+            var midNode = _876_链表的中间结点.MiddleNode(linkedList.Head);
+            Assert.Equal(midNode, linkedList.Node(2));
+        }
+
         private LinkedList GetLinkedList()
         {
             var linkedList = new LinkedList();

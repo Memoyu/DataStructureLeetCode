@@ -34,4 +34,24 @@ public class _141_环形链表
 
         return false;
     }
+
+    /// <summary>
+    /// 思路：
+    /// 比较简单，将遍历过的节点存储到HasSet中，如果Add() 返回 false说明插入元素失败，也就证明该节点已存在过，故存在环
+    /// </summary>
+    /// <param name="head"></param>
+    /// <returns></returns>
+    public static bool HasCycle_1(ListNode head)
+    {
+        if (head == null || head.next == null) return false;
+        HashSet<ListNode> set = new HashSet<ListNode> ();
+
+        while (head != null)
+        {
+            if (!set.Add(head)) return true;
+            head = head.next;
+        }
+
+        return false;
+    }
 }
