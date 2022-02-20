@@ -2,7 +2,7 @@ using Xunit;
 
 namespace 链表.Test
 {
-    public class Test
+    public class 链表Test
     {
         [Fact]
         public void _141_环形链表Test()

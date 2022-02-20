@@ -21,7 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\链表\链表.csproj" />
+    <ProjectReference Include="..\1.链表\链表\链表.csproj" />
+    <ProjectReference Include="..\2.栈\栈\栈.csproj" />
   </ItemGroup>
 
 </Project>
