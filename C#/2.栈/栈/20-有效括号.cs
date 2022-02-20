@@ -43,8 +43,6 @@ public class _20_有效括号
                 if (!e) return false;
             }
         }
-        if (stack.Count > 0) return false;
-
-        return true;
+        return stack.Count <= 0;
     }
 }
