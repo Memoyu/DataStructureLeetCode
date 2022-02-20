@@ -12,7 +12,7 @@ namespace 链表.Test
             //"([)]" false
             //"["
 
-            var res = _20_有效括号.IsValid("[");
+            var res = _20_有效括号.IsValid("([)]");
             Assert.False(res);
         }
     }

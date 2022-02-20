@@ -29,6 +29,25 @@ public class _20_有效括号
     /// <returns></returns>
     public static bool IsValid(string s)
     {
+        // 比较啰嗦的写法，后期如果添加符号，则需要修改校验逻辑；
+        //var stack = new Stack<char>();
+        //foreach (var item in s)
+        //{
+        //    if (item.Equals('(') || item.Equals('[') || item.Equals('{'))
+        //    {
+        //        stack.Push(item);
+        //    }
+        //    else
+        //    {
+        //        if (!stack.TryPop( out var popItem)) return false;
+        //        var e = item.Equals(popItem.Equals('(') ? ')' : popItem.Equals('[') ? ']' : popItem.Equals('{') ? '}' : ' ');
+        //        if (!e) return false;
+        //    }
+        //}
+        //return stack.Count <= 0;
+
+        // 使用字典进行字符对应的存储，便于后期维护添加，同时也是损耗了内存
+        var dic = new Dictionary<char, char> { {'(', ')' }, { '[', ']' }, { '{', '}' } };
         var stack = new Stack<char>();
         foreach (var item in s)
         {
@@ -38,8 +57,8 @@ public class _20_有效括号
             }
             else
             {
-                if (!stack.TryPop( out var popItem)) return false;
-                var e = item.Equals(popItem.Equals('(') ? ')' : popItem.Equals('[') ? ']' : popItem.Equals('{') ? '}' : ' ');
+                if (!stack.TryPop(out var popItem)) return false;
+                var e = item.Equals(dic[popItem]);
                 if (!e) return false;
             }
         }
