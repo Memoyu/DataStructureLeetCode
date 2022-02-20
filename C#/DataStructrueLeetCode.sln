@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "栈", "2.栈\栈\栈.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructrue.Test", "DataStructrue.Test\DataStructrue.Test.csproj", "{F5BE43C2-DFEC-4F52-B99B-8E731B7034E7}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.队列", "3.队列", "{E97DDC4E-1004-4421-BE8E-1D450D838E57}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "队列", "3.队列\队列\队列.csproj", "{054051B7-641A-467C-BFE7-7F17F4813425}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +35,10 @@ Global
 		{F5BE43C2-DFEC-4F52-B99B-8E731B7034E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5BE43C2-DFEC-4F52-B99B-8E731B7034E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5BE43C2-DFEC-4F52-B99B-8E731B7034E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{054051B7-641A-467C-BFE7-7F17F4813425}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{054051B7-641A-467C-BFE7-7F17F4813425}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{054051B7-641A-467C-BFE7-7F17F4813425}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{054051B7-641A-467C-BFE7-7F17F4813425}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -38,6 +46,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{99CBEE3D-F35A-4BDF-A539-D6307CC7D280} = {6BE31670-1988-4BD2-9533-03CF34110FC7}
 		{EB015BAC-FFB1-4196-B913-4D69DAB328B7} = {78F1F1A4-FE7E-45F7-94A1-15E31CC7CEF1}
+		{054051B7-641A-467C-BFE7-7F17F4813425} = {E97DDC4E-1004-4421-BE8E-1D450D838E57}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF84AAD0-028F-4933-B6FF-E4B1D3022BAD}
