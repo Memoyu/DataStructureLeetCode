@@ -9,13 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "链表", "1.链表\链表\�
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.栈", "2.栈", "{78F1F1A4-FE7E-45F7-94A1-15E31CC7CEF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "栈", "2.栈\栈\栈.csproj", "{EB015BAC-FFB1-4196-B913-4D69DAB328B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "栈", "2.栈\栈\栈.csproj", "{EB015BAC-FFB1-4196-B913-4D69DAB328B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataStructrue.Test", "DataStructrue.Test\DataStructrue.Test.csproj", "{F5BE43C2-DFEC-4F52-B99B-8E731B7034E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStructrue.Test", "DataStructrue.Test\DataStructrue.Test.csproj", "{F5BE43C2-DFEC-4F52-B99B-8E731B7034E7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.队列", "3.队列", "{E97DDC4E-1004-4421-BE8E-1D450D838E57}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "队列", "3.队列\队列\队列.csproj", "{054051B7-641A-467C-BFE7-7F17F4813425}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "队列", "3.队列\队列\队列.csproj", "{054051B7-641A-467C-BFE7-7F17F4813425}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
