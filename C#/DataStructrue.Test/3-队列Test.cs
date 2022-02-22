@@ -30,6 +30,7 @@ public class _3_队列Test
         //    Output.WriteLine(queue.DeQueue().ToString());
         //}
 
+        // 双端队列
         DeQueue<int> deQueue = new DeQueue<int>();
         deQueue.EnQueueFront(1);
         deQueue.EnQueueFront(2);
@@ -40,6 +41,56 @@ public class _3_队列Test
         while (!deQueue.IsEmpty())
         {
             Output.WriteLine(deQueue.DeQueueRear().ToString());
+        }
+    }
+
+    [Fact]
+    public void 实现循环对列Test()
+    {
+        // 循环队列
+        //CircleQueue<int> circleQueue = new CircleQueue<int>();
+        //for (int i = 0; i < 10; i++)
+        //{
+        //   circleQueue.EnQueue(i);
+        //}
+
+        //for (int i = 0; i < 5; i++)
+        //{
+        //    circleQueue.DeQueue();
+        //}
+
+        //for (int i = 15; i < 23; i++)
+        //{
+        //    circleQueue.EnQueue(i);
+        //}
+
+        //while (!circleQueue.IsEmpty())
+        //{
+        //    Output.WriteLine(circleQueue.DeQueue().ToString());
+        //}
+
+        // 循环双端队列
+        CircleDeQueue<int> circleQueue = new CircleDeQueue<int>();
+        for (int i = 0; i < 10; i++)
+        {
+            circleQueue.EnQueueFront(i + 1);
+            circleQueue.EnQueueRear(i + 100);
+        }
+
+        for (int i = 0; i < 3; i++)
+        {
+            circleQueue.DeQueueFront();
+            circleQueue.DeQueueRear();
+        }
+
+        circleQueue.EnQueueFront(11);
+        circleQueue.EnQueueFront(12);
+
+        Output.WriteLine(circleQueue.ToString());
+
+        while (!circleQueue.IsEmpty())
+        {
+            Output.WriteLine(circleQueue.DeQueueFront().ToString());
         }
     }
 }
