@@ -28,4 +28,19 @@ public class 栈Test
         // Assert.Equal(6, res);
         Assert.Equal(22, res);
     }
+
+    [Fact]
+    public void _224_基本计算器Test()
+    {
+        // var s = "1 + 1";
+        // var s = " 2-1 + 2 ";
+        // var s = "(1+(4+5+2)-3)+(6+8)";
+        var s = "-(2+3)";
+
+        var res = _224_基本计算器.Calculate(s);
+        // Assert.Equal(2, res);
+        // Assert.Equal(3, res);
+        // Assert.Equal(23, res);
+        Assert.Equal(-5, res);
+    }
 }
