@@ -43,4 +43,21 @@ public class 栈Test
         // Assert.Equal(23, res);
         Assert.Equal(-5, res);
     }
+
+    [Fact]
+    public void _856_括号的分数Test()
+    {
+        // var s = "()";
+        // var s = "(())";
+        // var s = "()()";
+        // var s = "(()(()))";
+        var s = "()(()(()))";
+
+        var res = _856_括号的分数.ScoreOfParentheses1(s);
+        // Assert.Equal(1, res);
+        // Assert.Equal(2, res);
+        // Assert.Equal(2, res);
+        // Assert.Equal(6, res);
+         Assert.Equal(7, res);
+    }
 }
