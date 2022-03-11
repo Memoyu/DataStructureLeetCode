@@ -53,7 +53,7 @@ public class 栈Test
         // var s = "(()(()))";
         var s = "()(()(()))";
 
-        var res = _856_括号的分数.ScoreOfParentheses1(s);
+        var res = _856_括号的分数.ScoreOfParentheses_1(s);
         // Assert.Equal(1, res);
         // Assert.Equal(2, res);
         // Assert.Equal(2, res);

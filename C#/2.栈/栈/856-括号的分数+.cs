@@ -43,7 +43,7 @@ public class _856_括号的分数
         return stack.Sum();
     }
 
-    public static int ScoreOfParentheses1(string s)
+    public static int ScoreOfParentheses_1(string s)
     {
         var stack = new Stack<int>();
         stack.Push(0);

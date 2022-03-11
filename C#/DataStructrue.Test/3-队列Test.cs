@@ -1,6 +1,7 @@
 ﻿using Xunit;
 using Xunit.Abstractions;
 using 队列.实现队列;
+using static 队列._225_用队列实现栈;
 
 namespace DataStructrue.Test;
 
@@ -92,5 +93,17 @@ public class _3_队列Test
         {
             Output.WriteLine(circleQueue.DeQueueFront().ToString());
         }
+    }
+
+    [Fact]
+    public void _225_用队列实现栈Test()
+    {
+        MyStack myStack = new MyStack();
+        myStack.Push(1);
+        myStack.Push(2);
+
+        Assert.Equal(2, myStack.Top());
+        Assert.Equal(2, myStack.Pop());
+        Assert.False(myStack.Empty());
     }
 }
