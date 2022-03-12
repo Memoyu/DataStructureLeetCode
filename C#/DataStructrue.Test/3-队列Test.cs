@@ -99,11 +99,17 @@ public class _3_队列Test
     public void _225_用队列实现栈Test()
     {
         MyStack myStack = new MyStack();
+        //myStack.Push(1);
+        //myStack.Push(2);
+
+        //Assert.Equal(2, myStack.Top());
+        //Assert.Equal(2, myStack.Pop());
+        //Assert.False(myStack.Empty());
+
         myStack.Push(1);
         myStack.Push(2);
+        myStack.Push(3);
 
-        Assert.Equal(2, myStack.Top());
-        Assert.Equal(2, myStack.Pop());
-        Assert.False(myStack.Empty());
+        Assert.Equal(3, myStack.Top());
     }
 }

@@ -23,9 +23,9 @@ public class _225_用队列实现栈
         public void Push(int x)
         {
             queue2.Enqueue(x);
-            foreach (var item in queue1)
+            while (queue1.Count > 0)
             {
-                queue2.Enqueue(item);
+                queue2.Enqueue(queue1.Dequeue());
             }
 
             var temp = queue1;
