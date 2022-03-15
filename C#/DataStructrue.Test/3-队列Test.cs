@@ -16,7 +16,7 @@ public class _3_队列Test
     }
 
     [Fact]
-    public void 实现对列Test()
+    public void 实现队列Test()
     {
         // 队列
         //Queue<int> queue = new Queue<int>();
@@ -46,7 +46,7 @@ public class _3_队列Test
     }
 
     [Fact]
-    public void 实现循环对列Test()
+    public void 实现循环队列Test()
     {
         // 循环队列
         //CircleQueue<int> circleQueue = new CircleQueue<int>();

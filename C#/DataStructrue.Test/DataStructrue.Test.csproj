@@ -24,6 +24,7 @@
     <ProjectReference Include="..\1.链表\链表\链表.csproj" />
     <ProjectReference Include="..\2.栈\栈\栈.csproj" />
     <ProjectReference Include="..\3.队列\队列\队列.csproj" />
+    <ProjectReference Include="..\4.二叉树\二叉树\二叉树.csproj" />
   </ItemGroup>
 
 </Project>
