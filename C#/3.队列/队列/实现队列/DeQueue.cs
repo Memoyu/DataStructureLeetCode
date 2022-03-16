@@ -89,6 +89,6 @@ public class DeQueue<T>
     /// </summary>
     public void Clear()
     {
-
+        _linkedlist.Clear();
     }
 }

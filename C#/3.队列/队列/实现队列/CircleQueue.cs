@@ -70,7 +70,13 @@ public class CircleQueue<T>
     /// </summary>
     public void Clear()
     {
+        for (int i = 0; i < _size; i++)
+        {
+            _arrary[Index(i)] = default;
+        }
 
+        _size = 0;
+        _front = 0;
     }
 
     public override string ToString()

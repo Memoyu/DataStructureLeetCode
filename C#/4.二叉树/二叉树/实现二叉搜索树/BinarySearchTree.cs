@@ -1,19 +1,25 @@
 ﻿namespace 二叉树.实现二叉搜索树;
 
-public class BinarySearchTree<T> where T : IComparable
+public class BinarySearchTree<T>
 {
-    private int size;
+    private int _size;
 
-    private Node<T> root;
+    private Node<T> _root;
+
+    private IComparer<T> _comparer;
 
     public BinarySearchTree()
     {
-
     }
 
-    public int Size() => size;
+    public BinarySearchTree(IComparer<T> comparer)
+    {
+        _comparer = comparer;
+    }
 
-    public bool IsEmpty() => size == 0;
+    public int Size() => _size;
+
+    public bool IsEmpty() => _size == 0;
 
     public void Clear()
     {
@@ -25,16 +31,16 @@ public class BinarySearchTree<T> where T : IComparable
         ValueNotNullCheck(value);
 
         // 如果是根节点
-        if (root == null)
+        if (_root == null)
         {
-            root = new Node<T>(value, null);
-            size++;
+            _root = new Node<T>(value, null);
+            _size++;
             return;
         }
 
         // 否则不是根节点
-        var node = root; // 初始化搜索节点
-        var parent = root; // 当前新增节点的父节点
+        var node = _root; // 初始化搜索节点
+        var parent = _root; // 当前新增节点的父节点
         int cmp = 0; // 方向，记录该节点是插入在父节点的左边还是右边
         while (node != null)
         {
@@ -63,7 +69,7 @@ public class BinarySearchTree<T> where T : IComparable
         {
             parent.Left = newNode;
         }
-        size++;
+        _size++;
     }
 
     public void Remove(T value)
@@ -84,7 +90,12 @@ public class BinarySearchTree<T> where T : IComparable
     /// <returns></returns>
     private int Compare(T value1, T value2)
     {
-        return value1.CompareTo(value2);
+        if (_comparer != null)
+        {
+            return _comparer.Compare(value1, value2);
+        }
+
+        return ((IComparable<T>)value1).CompareTo(value2);
     }
 
     private void ValueNotNullCheck(T value)

@@ -61,6 +61,6 @@ public class Queue<T>
     /// </summary>
     public void Clear()
     {
-
+        _linkedlist.Clear();
     }
 }
