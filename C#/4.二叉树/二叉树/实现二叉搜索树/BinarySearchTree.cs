@@ -1,4 +1,6 @@
-﻿namespace 二叉树.实现二叉搜索树;
+﻿using System.Diagnostics;
+
+namespace 二叉树.实现二叉搜索树;
 
 public class BinarySearchTree<T>
 {
@@ -85,6 +87,78 @@ public class BinarySearchTree<T>
     }
 
     /// <summary>
+    /// 前序遍历节点
+    /// </summary>
+    public void PreorderTraversal()
+    {
+        PreorderTraversal(_root);
+        Trace.WriteLine("---------------------");
+    }
+
+    private void PreorderTraversal(Node<T> node)
+    {
+        if (node == null) return;
+        Trace.WriteLine(node.Value);
+        PreorderTraversal(node.Left);
+        PreorderTraversal(node.Right);
+    }
+
+    /// <summary>
+    /// 中序遍历节点
+    /// </summary>
+    public void InorderTraversal()
+    {
+        IneorderTraversal(_root);
+        Trace.WriteLine("---------------------");
+    }
+
+    private void IneorderTraversal(Node<T> node)
+    {
+        if (node == null) return;
+        IneorderTraversal(node.Left);
+        Trace.WriteLine(node.Value);
+        IneorderTraversal(node.Right);
+    }
+
+    /// <summary>
+    /// 后序遍历节点
+    /// </summary>
+    public void PostorderTraversal()
+    {
+        PostorderTraversal(_root);
+        Trace.WriteLine("---------------------");
+    }
+
+    private void PostorderTraversal(Node<T> node)
+    {
+        if (node == null) return;
+        PostorderTraversal(node.Left);
+        PostorderTraversal(node.Right);
+        Trace.WriteLine(node.Value);
+    }
+
+    /// <summary>
+    /// 层序遍历
+    /// </summary>
+    public void LevelOrderTraversal()
+    {
+        if (_root == null) return;
+        Queue<Node<T>> queue = new Queue<Node<T>>();
+        queue.Enqueue(_root);
+        while (queue.Count > 0)
+        {
+            var node = queue.Dequeue();
+            var ln = node.Left;
+            var rn = node.Right;
+            if (ln != null) queue.Enqueue(ln);
+            if (rn != null) queue.Enqueue(rn);
+
+            Trace.WriteLine(node.Value);
+        }
+        Trace.WriteLine("---------------------");
+    }
+
+    /// <summary>
     /// 当 value1 等于 value2时，返回0；当 value1 大于 value2时，返回大于0；当 value1 小于 value2时，返回小于0;
     /// </summary>
     /// <param name="value1"></param>
@@ -97,7 +171,7 @@ public class BinarySearchTree<T>
             return _comparer.Compare(value1, value2);
         }
 
-        return ((IComparable<T>)value1).CompareTo(value2);
+        return ((IComparable<T>)value1!).CompareTo(value2);
     }
 
     private void ValueNotNullCheck(T value)
@@ -105,17 +179,17 @@ public class BinarySearchTree<T>
         if (value == null) throw new ArgumentNullException("value is not null");
     }
 
-    private class Node<T>
+    private class Node<TN>
     {
-        public T Value { set; get; }
+        public TN Value { set; get; }
 
-        public Node<T> Left { set; get; }
+        public Node<TN> Left { set; get; } = null!;
 
-        public Node<T> Right { set; get; }
+        public Node<TN> Right { set; get; } = null!;
 
-        public Node<T> Parent { set; get; }
+        public Node<TN> Parent { set; get; } = null!;
 
-        public Node(T value, Node<T> parent)
+        public Node(TN value, Node<TN> parent)
         {
             Value = value;
             Parent = parent;
