@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Text;
 
 namespace 二叉树.实现二叉搜索树;
 
@@ -172,6 +173,21 @@ public class BinarySearchTree<T>
     private void ValueNotNullCheck(T value)
     {
         if (value == null) throw new ArgumentNullException("value is not null");
+    }
+
+    public override string ToString()
+    {
+        var sb = new StringBuilder();
+        ToString(_root, sb, "");
+        return sb.ToString();
+    }
+
+    private void ToString(Node<T> node, StringBuilder sb, string prefix)
+    {
+        if (node == null) return;
+        sb.Append(prefix).Append(node.Value).Append("\r\n");
+        ToString(node.Left, sb, $"{prefix}[L]");
+        ToString(node.Right, sb, $"{prefix}[R]");
     }
 
     private class Node<TN>

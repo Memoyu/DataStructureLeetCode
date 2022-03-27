@@ -26,7 +26,7 @@ public class _4_二叉树Test
             bst.Add(item);
         }
 
-        _output.WriteLine("------------Preorder Traversal------------");
+        /*_output.WriteLine("------------Preorder Traversal------------");
         bst.PreorderTraversal(val =>
         {
             _output.WriteLine(val.ToString());
@@ -48,6 +48,8 @@ public class _4_二叉树Test
         bst.LevelOrderTraversal(val => 
         {
             _output.WriteLine(val.ToString());
-        });
+        });*/
+
+        _output.WriteLine(bst.ToString());
     }
 }
