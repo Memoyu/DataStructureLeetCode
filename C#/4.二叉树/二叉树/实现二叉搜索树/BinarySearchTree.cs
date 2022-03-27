@@ -56,6 +56,8 @@ public class BinarySearchTree<T>
             }
             else
             {
+                // 相等时，将覆盖节点的值
+                node.Value = value;
                 return;
             }
         }
