@@ -1,13 +1,19 @@
 ﻿
 using System.Collections.Generic;
-using System.Linq;
 using Xunit;
+using Xunit.Abstractions;
 using 二叉树.实现二叉搜索树;
 
 namespace DataStructrue.Test;
 
 public class _4_二叉树Test
 {
+    private readonly ITestOutputHelper _output;
+    public _4_二叉树Test(ITestOutputHelper output)
+    {
+        _output = output;
+    }
+
     [Fact]
     public void 实现二叉搜索树Test()
     {
@@ -20,12 +26,28 @@ public class _4_二叉树Test
             bst.Add(item);
         }
 
-        bst.PreorderTraversal();
+        _output.WriteLine("------------Preorder Traversal------------");
+        bst.PreorderTraversal(val =>
+        {
+            _output.WriteLine(val.ToString());
+        });
 
-        bst.InorderTraversal();
+        _output.WriteLine("------------Inorder Traversal------------");
+        bst.InorderTraversal(val =>
+        {
+            _output.WriteLine(val.ToString());
+        });
 
-        bst.PostorderTraversal();
+        _output.WriteLine("------------Postorder Traversal------------");
+        bst.PostorderTraversal(val =>
+        {
+            _output.WriteLine(val.ToString());
+        });
 
-        bst.LevelOrderTraversal();
+        _output.WriteLine("------------Level Order Traversal------------");
+        bst.LevelOrderTraversal(val => 
+        {
+            _output.WriteLine(val.ToString());
+        });
     }
 }

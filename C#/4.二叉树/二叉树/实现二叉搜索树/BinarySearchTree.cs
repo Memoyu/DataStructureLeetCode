@@ -6,9 +6,9 @@ public class BinarySearchTree<T>
 {
     private int _size;
 
-    private Node<T> _root;
+    private Node<T> _root = null!;
 
-    private IComparer<T> _comparer;
+    private IComparer<T> _comparer = null!;
 
     public BinarySearchTree()
     {
@@ -89,58 +89,55 @@ public class BinarySearchTree<T>
     /// <summary>
     /// 前序遍历节点
     /// </summary>
-    public void PreorderTraversal()
+    public void PreorderTraversal(Action<T> action)
     {
-        PreorderTraversal(_root);
-        Trace.WriteLine("---------------------");
+        PreorderTraversal(_root, action);
     }
 
-    private void PreorderTraversal(Node<T> node)
+    private void PreorderTraversal(Node<T> node, Action<T> action)
     {
         if (node == null) return;
-        Trace.WriteLine(node.Value);
-        PreorderTraversal(node.Left);
-        PreorderTraversal(node.Right);
+        action(node.Value);
+        PreorderTraversal(node.Left, action);
+        PreorderTraversal(node.Right, action);
     }
 
     /// <summary>
     /// 中序遍历节点
     /// </summary>
-    public void InorderTraversal()
+    public void InorderTraversal(Action<T> action)
     {
-        IneorderTraversal(_root);
-        Trace.WriteLine("---------------------");
+        IneorderTraversal(_root, action);
     }
 
-    private void IneorderTraversal(Node<T> node)
+    private void IneorderTraversal(Node<T> node, Action<T> action)
     {
         if (node == null) return;
-        IneorderTraversal(node.Left);
-        Trace.WriteLine(node.Value);
-        IneorderTraversal(node.Right);
+        IneorderTraversal(node.Left, action);
+        action(node.Value);
+        IneorderTraversal(node.Right, action);
     }
 
     /// <summary>
     /// 后序遍历节点
     /// </summary>
-    public void PostorderTraversal()
+    public void PostorderTraversal(Action<T> action)
     {
-        PostorderTraversal(_root);
-        Trace.WriteLine("---------------------");
+        PostorderTraversal(_root, action);
     }
 
-    private void PostorderTraversal(Node<T> node)
+    private void PostorderTraversal(Node<T> node, Action<T> action)
     {
         if (node == null) return;
-        PostorderTraversal(node.Left);
-        PostorderTraversal(node.Right);
-        Trace.WriteLine(node.Value);
+        PostorderTraversal(node.Left, action);
+        PostorderTraversal(node.Right, action);
+        action(node.Value);
     }
 
     /// <summary>
     /// 层序遍历
     /// </summary>
-    public void LevelOrderTraversal()
+    public void LevelOrderTraversal(Action<T> action)
     {
         if (_root == null) return;
         Queue<Node<T>> queue = new Queue<Node<T>>();
@@ -148,14 +145,12 @@ public class BinarySearchTree<T>
         while (queue.Count > 0)
         {
             var node = queue.Dequeue();
+            action.Invoke(node.Value);
             var ln = node.Left;
             var rn = node.Right;
             if (ln != null) queue.Enqueue(ln);
             if (rn != null) queue.Enqueue(rn);
-
-            Trace.WriteLine(node.Value);
         }
-        Trace.WriteLine("---------------------");
     }
 
     /// <summary>
