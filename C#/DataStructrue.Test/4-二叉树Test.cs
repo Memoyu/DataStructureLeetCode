@@ -51,5 +51,7 @@ public class _4_二叉树Test
         });*/
 
         _output.WriteLine(bst.ToString());
+
+        Assert.Equal(4, bst.Height());
     }
 }

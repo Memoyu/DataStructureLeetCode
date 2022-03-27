@@ -24,6 +24,17 @@ public class BinarySearchTree<T>
 
     public bool IsEmpty() => _size == 0;
 
+    public int Height()
+    {
+        return Height(_root);
+    }
+
+    private int Height(Node<T> node)
+    {
+        if (node == null) return 0;
+        return 1 + Math.Max(Height(node.Left), Height(node.Right));
+    }
+
     public void Clear()
     {
 
