@@ -24,6 +24,30 @@ public class BinarySearchTree<T>
 
     public bool IsEmpty() => _size == 0;
 
+    public int HeightByIterate()
+    {
+        var height = 0;
+        if (_root == null) return height;
+        var levelSize = 1;
+        Queue<Node<T>> queue = new Queue<Node<T>>();
+        queue.Enqueue(_root);
+        while (queue.Count > 0)
+        {
+            var node = queue.Dequeue();
+            levelSize--;
+            var ln = node.Left;
+            var rn = node.Right;
+            if (ln != null) queue.Enqueue(ln);
+            if (rn != null) queue.Enqueue(rn);
+            if (levelSize == 0)
+            {
+                levelSize = queue.Count;
+                height++;
+            }
+        }
+        return height;
+    }
+
     public int Height()
     {
         return Height(_root);
