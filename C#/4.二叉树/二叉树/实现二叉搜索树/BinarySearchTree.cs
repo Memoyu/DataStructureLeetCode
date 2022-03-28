@@ -24,21 +24,79 @@ public class BinarySearchTree<T>
 
     public bool IsEmpty() => _size == 0;
 
+    /// <summary>
+    /// 是否为完全二叉树
+    /// </summary>
+    /// <returns></returns>
+    public bool IsComplete()
+    {
+        // 同样采用层序遍历的形式进行校验
+
+        // 如果树不为空，开始层序遍历二叉树（用队列）
+        // 如果 node.left != null，将 node.left 入队
+        // 如果 node.left == null && node.right != null，返回 false
+        // 如果 node.right != null，将 node.right 入队
+        // 如果 node.right == null
+        //  ✓ 那么后面遍历的节点应该都为叶子节点，才是完全二叉树
+        //  ✓ 否则返回 false
+        // 遍历结束，返回 true
+        if (_root == null) return false;
+        Queue<Node<T>> queue = new Queue<Node<T>>();
+        queue.Enqueue(_root);
+        bool leaf = false;
+        while (queue.Count > 0)
+        {
+            var node = queue.Dequeue();
+            // 如果标注了该状态，则说明接下来遍历的全是子节点，否则不为完全二叉树
+            if (!node.IsLeaf()) return false;
+            var ln = node.Left;
+            var rn = node.Right;
+            // 针对上述四种主要情况进行判断
+            if (rn != null)
+            {
+                queue.Enqueue(rn);
+            }
+            if (ln != null)
+            {
+                queue.Enqueue(ln);
+            }
+            else if (ln == null && rn != null)
+            {
+                return false;
+            }
+            else
+            {
+                // 第四种情况时，说明接下来的节点都为子节点才符合完全二叉树的要求，所以进行状态标注
+                leaf = true;
+            }
+
+        }
+        return true;
+    }
+
+    /// <summary>
+    /// 使用迭代实现树的高度获取
+    /// </summary>
+    /// <returns></returns>
     public int HeightByIterate()
     {
+        // 采用层序遍历的形式进行处理
+        // 遍历到每一层的每一个节点，到最后一个节点时，进行下一层节点数的获取，并进行高度递增
         var height = 0;
         if (_root == null) return height;
-        var levelSize = 1;
+        var levelSize = 1;// 存储层的节点数
         Queue<Node<T>> queue = new Queue<Node<T>>();
         queue.Enqueue(_root);
         while (queue.Count > 0)
         {
             var node = queue.Dequeue();
-            levelSize--;
+            levelSize--;// 每取出一个节点，就进行层节点数的递减
             var ln = node.Left;
             var rn = node.Right;
             if (ln != null) queue.Enqueue(ln);
-            if (rn != null) queue.Enqueue(rn);
+            if (rn != null) queue.Enqueue(rn);// 将左右节点入队
+
+            // 如果层节点遍历完了，则进行层数递增，并获取下一层的节点数(此时，queue中所有节点则为下一层的所有节点)
             if (levelSize == 0)
             {
                 levelSize = queue.Count;
@@ -48,6 +106,10 @@ public class BinarySearchTree<T>
         return height;
     }
 
+    /// <summary>
+    /// 使用递归实现树的高度获取
+    /// </summary>
+    /// <returns></returns>
     public int Height()
     {
         return Height(_root);
@@ -56,6 +118,7 @@ public class BinarySearchTree<T>
     private int Height(Node<T> node)
     {
         if (node == null) return 0;
+        // 递归 比较树左右两边的高度，哪边高取哪边
         return 1 + Math.Max(Height(node.Left), Height(node.Right));
     }
 
@@ -180,10 +243,12 @@ public class BinarySearchTree<T>
         queue.Enqueue(_root);
         while (queue.Count > 0)
         {
+            // 从队列中出队节点，进行处理
             var node = queue.Dequeue();
             action.Invoke(node.Value);
             var ln = node.Left;
             var rn = node.Right;
+            // 将左右节点进行入队
             if (ln != null) queue.Enqueue(ln);
             if (rn != null) queue.Enqueue(rn);
         }
@@ -240,5 +305,17 @@ public class BinarySearchTree<T>
             Value = value;
             Parent = parent;
         }
+
+        /// <summary>
+        /// 是否子节点（完全二叉树时，叶子节点必然是度为0的）
+        /// </summary>
+        /// <returns></returns>
+        public bool IsLeaf() => Left == null && Right == null;
+
+        /// <summary>
+        /// 是否度为2
+        /// </summary>
+        /// <returns></returns>
+        public bool IsTowChildren() => Left != null && Right != null;
     }
 }
