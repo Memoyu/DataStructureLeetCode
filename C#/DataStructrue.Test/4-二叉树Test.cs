@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Xunit;
 using Xunit.Abstractions;
+using 二叉树;
 using 二叉树.实现二叉搜索树;
 
 namespace DataStructrue.Test;
@@ -54,5 +55,52 @@ public class _4_二叉树Test
 
         Assert.Equal(4, bst.Height());
         Assert.Equal(4, bst.HeightByIterate());
+    }
+
+    [Fact]
+    public void _226_翻转二叉树Test()
+    {
+        // List<int> data = Enumerable.Range(1, 10).ToList();
+        var data = new List<int> { 4, 2, 7, 1, 3, 6, 9 };
+        BinarySearchTree<int> bst = new BinarySearchTree<int>();
+
+        foreach (var item in data)
+        {
+            bst.Add(item);
+        }
+
+        /*bst.LevelOrderTraversal(val =>
+        {
+            _output.WriteLine(val.ToString());
+        });
+        _output.WriteLine("------------------------------");
+        _226_翻转二叉树.InvertTreePreorder(bst.Root());
+        bst.LevelOrderTraversal(val =>
+        {
+            _output.WriteLine(val.ToString());
+        });*/
+
+
+        /*bst.LevelOrderTraversal(val =>
+        {
+            _output.WriteLine(val.ToString());
+        });
+        _output.WriteLine("------------------------------");
+        _226_翻转二叉树.InvertTreeInorder(bst.Root());
+        bst.LevelOrderTraversal(val =>
+        {
+            _output.WriteLine(val.ToString());
+        });*/
+
+        bst.LevelOrderTraversal(val =>
+        {
+            _output.WriteLine(val.ToString());
+        });
+        _output.WriteLine("------------------------------");
+        _226_翻转二叉树.InvertTreeLevelOrder(bst.Root());
+        bst.LevelOrderTraversal(val =>
+        {
+            _output.WriteLine(val.ToString());
+        });
     }
 }

@@ -20,6 +20,9 @@ public class BinarySearchTree<T>
         _comparer = comparer;
     }
 
+
+    public Node<T> Root() => _root;
+
     public int Size() => _size;
 
     public bool IsEmpty() => _size == 0;
@@ -52,17 +55,18 @@ public class BinarySearchTree<T>
             var ln = node.Left;
             var rn = node.Right;
             // 针对上述四种主要情况进行判断
-            if (rn != null)
-            {
-                queue.Enqueue(rn);
-            }
             if (ln != null)
             {
                 queue.Enqueue(ln);
             }
-            else if (ln == null && rn != null)
+            else if (rn != null)
             {
                 return false;
+            }
+
+            if (rn != null)
+            {
+                queue.Enqueue(rn);
             }
             else
             {
@@ -190,6 +194,7 @@ public class BinarySearchTree<T>
     /// </summary>
     public void PreorderTraversal(Action<T> action)
     {
+        if (action == null) return;
         PreorderTraversal(_root, action);
     }
 
@@ -206,6 +211,7 @@ public class BinarySearchTree<T>
     /// </summary>
     public void InorderTraversal(Action<T> action)
     {
+        if (action == null) return;
         IneorderTraversal(_root, action);
     }
 
@@ -222,6 +228,7 @@ public class BinarySearchTree<T>
     /// </summary>
     public void PostorderTraversal(Action<T> action)
     {
+        if (action == null) return;
         PostorderTraversal(_root, action);
     }
 
@@ -238,7 +245,7 @@ public class BinarySearchTree<T>
     /// </summary>
     public void LevelOrderTraversal(Action<T> action)
     {
-        if (_root == null) return;
+        if (_root == null || action == null) return;
         Queue<Node<T>> queue = new Queue<Node<T>>();
         queue.Enqueue(_root);
         while (queue.Count > 0)
@@ -290,7 +297,7 @@ public class BinarySearchTree<T>
         ToString(node.Right, sb, $"{prefix}[R]");
     }
 
-    private class Node<TN>
+    public class Node<TN>
     {
         public TN Value { set; get; }
 
