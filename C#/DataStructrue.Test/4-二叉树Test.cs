@@ -103,4 +103,30 @@ public class _4_二叉树Test
             _output.WriteLine(val.ToString());
         });
     }
+
+    [Fact]
+    public void _0_求出二叉树Test()
+    {
+        // 前序序列: A,B,C,D,E,F,G,H,I,J
+        // 中序序列: C,B,A,F,E,D,I,H,J,G
+        // 后序序列: C,B,F,E,I,J,H,G,D,A
+
+        //var preorder = "A,B,C,D,E,F,G,H,I,J";
+        //var inorder = "C,B,A,F,E,D,I,H,J,G";
+        //var postorder = "C,B,F,E,I,J,H,G,D,A";
+
+        //var preorder = "1,2,3,4,5,6,7";
+        //var inorder = "3,2,4,1,6,5,7";
+        //var postorder = "3,4,2,6,7,5,1";
+
+        var preorder = "A,B,D,C,E,G,H,F";
+        var inorder = "D,B,A,G,E,H,C,F";
+        var postorder = "D,B,G,H,E,F,C,A";
+
+        //var postorderRes = _0_求出二叉树.GetPostorder(preorder, inorder);
+        //Assert.Equal(postorderRes, postorder);
+
+        var preorderRes = _0_求出二叉树.GetPreorder(inorder, postorder);
+        Assert.Equal(preorderRes, preorder);
+    }
 }
