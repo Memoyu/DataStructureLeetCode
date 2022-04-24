@@ -4,6 +4,7 @@ using Xunit;
 using Xunit.Abstractions;
 using 二叉树;
 using 二叉树.实现二叉搜索树;
+using static 二叉树.实现二叉搜索树.BinarySearchTree<int>;
 
 namespace DataStructrue.Test;
 
@@ -102,6 +103,25 @@ public class _4_二叉树Test
         {
             _output.WriteLine(val.ToString());
         });
+    }
+
+    [Fact]
+    public void _0_获取前驱节点Test()
+    {
+        var data = new List<int> { 8, 4, 13, 2, 6, 10, 1, 3, 5, 7, 9, 12, 11 };
+        BinarySearchTree<int> bst = new BinarySearchTree<int>();
+        foreach (var item in data)
+        {
+            bst.Add(item);
+        }
+        Node<int> node = null;
+        bst.PreorderTraversalNode(bst.Root(), n =>
+        {
+            if (n.Value == 8) node = n;
+        });
+        _output.WriteLine(bst.ToString());
+        var pn = bst.Predecessor(node);
+        Assert.Equal(7, pn.Value);
     }
 
     [Fact]

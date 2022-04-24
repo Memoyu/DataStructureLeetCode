@@ -207,6 +207,19 @@ public class BinarySearchTree<T>
     }
 
     /// <summary>
+    /// Temp method
+    /// </summary>
+    /// <param name="node"></param>
+    /// <param name="action"></param>
+    public void PreorderTraversalNode(Node<T> node, Action<Node<T>> action)
+    {
+        if (node == null) return;
+        action(node);
+        PreorderTraversalNode(node.Left, action);
+        PreorderTraversalNode(node.Right, action);
+    }
+
+    /// <summary>
     /// 中序遍历节点
     /// </summary>
     public void InorderTraversal(Action<T> action)
@@ -259,6 +272,30 @@ public class BinarySearchTree<T>
             if (ln != null) queue.Enqueue(ln);
             if (rn != null) queue.Enqueue(rn);
         }
+    }
+
+    public Node<T> Predecessor(Node<T> node)
+    {
+        Node<T> predecessor = null;
+        if (node.Left != null)
+        {
+            node = node.Left;
+            while (node != null)
+            {
+                predecessor = node;
+                node = node.Right;
+            }
+        }
+        else if (node.Left == null && node.Parent != null)
+        {
+            while (node.Parent != null && node.Parent.Right != null && node.Parent.Right != node)
+            {
+                node = node.Parent;
+            }
+            predecessor = node.Parent;
+        }
+
+        return predecessor;
     }
 
     /// <summary>
