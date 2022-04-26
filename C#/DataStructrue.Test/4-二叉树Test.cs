@@ -117,10 +117,29 @@ public class _4_二叉树Test
         Node<int> node = null;
         bst.PreorderTraversalNode(bst.Root(), n =>
         {
-            if (n.Value == 8) node = n;
+            if (n.Value == 13) node = n;
         });
         _output.WriteLine(bst.ToString());
         var pn = bst.Predecessor(node);
+        Assert.Equal(12, pn.Value);
+    }
+
+    [Fact]
+    public void _0_获取后继节点Test()
+    {
+        var data = new List<int> { 4, 1, 8, 2, 7, 10, 3, 5, 9, 11, 6 };
+        BinarySearchTree<int> bst = new BinarySearchTree<int>();
+        foreach (var item in data)
+        {
+            bst.Add(item);
+        }
+        Node<int> node = null;
+        bst.PreorderTraversalNode(bst.Root(), n =>
+        {
+            if (n.Value == 6) node = n;
+        });
+        _output.WriteLine(bst.ToString());
+        var pn = bst.Successor(node);
         Assert.Equal(7, pn.Value);
     }
 

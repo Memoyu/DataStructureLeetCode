@@ -274,28 +274,60 @@ public class BinarySearchTree<T>
         }
     }
 
+    /// <summary>
+    /// 获取二叉树某个节点的前驱节点
+    /// </summary>
+    /// <param name="node"></param>
+    /// <returns></returns>
     public Node<T> Predecessor(Node<T> node)
     {
-        Node<T> predecessor = null;
+        // 当节点的左节点不为空时
         if (node.Left != null)
         {
-            node = node.Left;
-            while (node != null)
+            Node<T> predecessor = null;
+            predecessor = node.Left;
+            while (predecessor.Right != null)
             {
-                predecessor = node;
-                node = node.Right;
+                predecessor = predecessor.Right;
             }
-        }
-        else if (node.Left == null && node.Parent != null)
-        {
-            while (node.Parent != null && node.Parent.Right != null && node.Parent.Right != node)
-            {
-                node = node.Parent;
-            }
-            predecessor = node.Parent;
+
+            return predecessor;
         }
 
-        return predecessor;
+        // 否则，左节点为空，则向上查找，直至parent为空或parent.Left == 当前节点
+        while (node.Parent != null && node == node.Parent.Left)
+        {
+            node = node.Parent;
+        }
+
+        return node.Parent;
+    }
+
+    /// <summary>
+    /// 获取二叉树某个节点的后继节点（实现为前驱节点的反向，则 Rigth->Left;Left->Rigth）
+    /// </summary>
+    /// <param name="node"></param>
+    /// <returns></returns>
+    public Node<T> Successor(Node<T> node)
+    {
+        if (node.Right != null)
+        {
+            Node<T> predecessor = null;
+            predecessor = node.Right;
+            while (predecessor.Left != null)
+            {
+                predecessor = predecessor.Left;
+            }
+
+            return predecessor;
+        }
+
+        while (node.Parent != null && node == node.Parent.Right)
+        {
+            node = node.Parent;
+        }
+
+        return node.Parent;
     }
 
     /// <summary>
