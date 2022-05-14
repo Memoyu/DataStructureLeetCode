@@ -179,14 +179,85 @@ public class BinarySearchTree<T>
         _size++;
     }
 
+    /// <summary>
+    /// 移除指定值的节点
+    /// </summary>
+    /// <param name="value"></param>
     public void Remove(T value)
     {
+        Remove(GetNode(value));
+    }
 
+    /// <summary>
+    /// 移除指定节点
+    /// </summary>
+    /// <param name="node"></param>
+    private void Remove(Node<T> node)
+    {
+        if (node == null) return;
+        // 否则节点一定存在，且必须删除，故先减掉size
+        _size--;
+
+        // 指定删除节点三种情况：度为2、度为1、度为0，且只需要针对度为2进行特殊处理
+        // 指定删除节点当度为2时，可以使用前置节点或后置节点进行覆盖，然后删除后置或前置节点
+        if (node.IsTowChildren())
+        {
+            // 获取后置节点
+            var t = Successor(node);
+            // 覆盖节点的值
+            node.Value = t.Value;
+            // 赋值node,交由后续逻辑删除
+            node = t;
+        }
+
+        // 到这的都是需要删除的节点（node的度必然是1或0）
+        var replacement =  node.Left ?? node.Right;
+        if (replacement != null) // node的度为1
+        {
+            // 更改parent
+            replacement.Parent = node.Parent;
+
+            // 更改parent 的 left 或 right 指向
+            if (node.Parent == null) _root = replacement;
+            else if (node == node.Parent.Left) node.Parent.Left = replacement;
+            else node.Parent.Right = replacement;
+        }
+        else if (node.Parent != null) // node是叶子节点，同时也是根节点（就这棵树就这一个节点）
+        {
+            _root = null;
+        }
+        else // node是叶子节点,且不是根节点
+        {
+            if (node.Parent.Left != null) node.Parent.Left = null;
+            else node.Parent.Right = null;
+        }
     }
 
     public bool Contains(T value)
     {
-        return false;
+        return GetNode(value) != null;
+    }
+
+
+    /// <summary>
+    /// 根据value获取节点
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    private Node<T> GetNode(T value)
+    {
+        var node = _root;
+        while (node != null)
+        {
+            var cmp = Compare(value, node.Value);
+            if (cmp == 0) // cmp = 0 说明目标值与当前节点值相等，找到节点
+                return node;
+            else if (cmp < 0) // cmp < 0 说明目标值值比当前节点的值小，故需要往左边继续找（二叉搜索树的性质决定：节点左子树小，右子树大）
+                node = node.Left;
+            else // cmp > 0 往右边找 
+                node = node.Right;
+        }
+        return null;
     }
 
     /// <summary>
