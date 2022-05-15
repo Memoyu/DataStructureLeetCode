@@ -4,6 +4,10 @@ using 二叉树.二叉树.Base;
 
 namespace 二叉树.二叉树.二叉搜索树;
 
+/// <summary>
+/// 二叉搜索树
+/// </summary>
+/// <typeparam name="T"></typeparam>
 public class BST<T> : BinaryTree<T>
 {
     private IComparer<T> _comparer = null!;
@@ -17,6 +21,10 @@ public class BST<T> : BinaryTree<T>
         _comparer = comparer;
     }
 
+    /// <summary>
+    /// 添加新的节点
+    /// </summary>
+    /// <param name="value"></param>
     public void Add(T value)
     {
         ValueNotNullCheck(value);
@@ -26,6 +34,8 @@ public class BST<T> : BinaryTree<T>
         {
             _root = new TreeNode<T>(value, null);
             _size++;
+            // 添加节点后操作
+            AfterAdd(_root);
             return;
         }
 
@@ -63,6 +73,12 @@ public class BST<T> : BinaryTree<T>
             parent.Left = newNode;
         }
         _size++;
+        // 添加节点后操作
+        AfterAdd(newNode);
+    }
+
+    protected virtual void AfterAdd(TreeNode<T> node)
+    { 
     }
 
     /// <summary>
