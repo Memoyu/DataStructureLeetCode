@@ -1,4 +1,4 @@
-﻿using static 二叉树.实现二叉搜索树.BinarySearchTree<string>;
+﻿using 二叉树.二叉树.Base;
 
 namespace 二叉树;
 
@@ -17,7 +17,7 @@ public class _0_求出二叉树
         return string.Join(",", nodes);
     }
 
-    private static Node<string> RefactorBinaryTreeByPI(List<string> preorder, List<string> inorder)
+    private static TreeNode<string> RefactorBinaryTreeByPI(List<string> preorder, List<string> inorder)
     {
         var root = preorder.FirstOrDefault();
 
@@ -55,7 +55,7 @@ public class _0_求出二叉树
             }
         }
 
-        Node<string> node = new Node<string>(root, null);
+        TreeNode<string> node = new TreeNode<string>(root, null);
         if (pLeft == null || !left.Any()) return node;
         node.Left = RefactorBinaryTreeByPI(pLeft, left);
         if (pRight == null || !right.Any()) return node;
@@ -64,7 +64,7 @@ public class _0_求出二叉树
         return node;
     }
 
-    private static void PostorderTraversal(Node<string> node, Action<string> action)
+    private static void PostorderTraversal(TreeNode<string> node, Action<string> action)
     {
         if (node == null) return;
         PostorderTraversal(node.Left, action);
@@ -85,7 +85,7 @@ public class _0_求出二叉树
         return string.Join(",", nodes);
     }
 
-    private static Node<string> RefactorBinaryTreeByIP(List<string> inorder, List<string> postorder)
+    private static TreeNode<string> RefactorBinaryTreeByIP(List<string> inorder, List<string> postorder)
     {
         var root = postorder.LastOrDefault();
 
@@ -123,7 +123,7 @@ public class _0_求出二叉树
             }
         }
 
-        Node<string> node = new Node<string>(root, null);
+        TreeNode<string> node = new TreeNode<string>(root, null);
         if (pLeft == null || !left.Any()) return node;
         node.Left = RefactorBinaryTreeByIP(left, pLeft);
         if (pRight == null || !right.Any()) return node;
@@ -132,7 +132,7 @@ public class _0_求出二叉树
         return node;
     }
 
-    private static void PreorderTraversal(Node<string> node, Action<string> action)
+    private static void PreorderTraversal(TreeNode<string> node, Action<string> action)
     {
         if (node == null) return;
         action(node.Value);

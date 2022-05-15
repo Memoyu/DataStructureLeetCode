@@ -1,10 +1,10 @@
-﻿using static 二叉树.实现二叉搜索树.BinarySearchTree<int>;
+﻿using 二叉树.二叉树.Base;
 
 namespace 二叉树;
 
 public class _226_翻转二叉树
 {
-    public static Node<int> InvertTreePreorder(Node<int> root)
+    public static TreeNode<int> InvertTreePreorder(TreeNode<int> root)
     {
         if (root == null) return root;
 
@@ -18,7 +18,7 @@ public class _226_翻转二叉树
         return root;
     }
 
-    public static Node<int> InvertTreeInorder(Node<int> root)
+    public static TreeNode<int> InvertTreeInorder(TreeNode<int> root)
     {
         if (root == null) return root;
 
@@ -34,7 +34,7 @@ public class _226_翻转二叉树
         return root;
     }
 
-    public static Node<int> InvertTreePostorder(Node<int> root)
+    public static TreeNode<int> InvertTreePostorder(TreeNode<int> root)
     {
         if (root == null) return root;
 
@@ -48,12 +48,11 @@ public class _226_翻转二叉树
         return root;
     }
 
-    public static Node<int> InvertTreeLevelOrder(Node<int> root)
+    public static TreeNode<int> InvertTreeLevelOrder(TreeNode<int> root)
     {
         if (root == null) return root;
 
-
-        Queue<Node<int>> queue = new Queue<Node<int>>();
+        Queue<TreeNode<int>> queue = new Queue<TreeNode<int>>();
         queue.Enqueue(root);
 
         while (queue.Count > 0)
@@ -74,8 +73,6 @@ public class _226_翻转二叉树
                 queue.Enqueue(rn);
             }
         }    
-
-       
 
         return root;
     }

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using Xunit;
 using Xunit.Abstractions;
 using 二叉树;
-using 二叉树.实现二叉搜索树;
-using static 二叉树.实现二叉搜索树.BinarySearchTree<int>;
+using 二叉树.二叉树.二叉搜索树;
+using 二叉树.二叉树.Base;
 
 namespace DataStructrue.Test;
 
@@ -21,7 +21,7 @@ public class _4_二叉树Test
     {
         // List<int> data = Enumerable.Range(1, 10).ToList();
         var data = new List<int> { 7, 4, 9, 2, 5, 8, 11, 1, 3, 10, 12 };
-        BinarySearchTree<int> bst = new BinarySearchTree<int>();
+        BST<int> bst = new BST<int>();
 
         foreach (var item in data)
         {
@@ -63,7 +63,7 @@ public class _4_二叉树Test
     {
         // List<int> data = Enumerable.Range(1, 10).ToList();
         var data = new List<int> { 4, 2, 7, 1, 3, 6, 9 };
-        BinarySearchTree<int> bst = new BinarySearchTree<int>();
+        BST<int> bst = new BST<int>();
 
         foreach (var item in data)
         {
@@ -109,16 +109,12 @@ public class _4_二叉树Test
     public void _0_获取前驱节点Test()
     {
         var data = new List<int> { 8, 4, 13, 2, 6, 10, 1, 3, 5, 7, 9, 12, 11 };
-        BinarySearchTree<int> bst = new BinarySearchTree<int>();
+        BST<int> bst = new BST<int>();
         foreach (var item in data)
         {
             bst.Add(item);
         }
-        Node<int> node = null;
-        bst.PreorderTraversalNode(bst.Root(), n =>
-        {
-            if (n.Value == 13) node = n;
-        });
+        TreeNode<int> node = bst.GetNode(13);
         _output.WriteLine(bst.ToString());
         var pn = bst.Predecessor(node);
         Assert.Equal(12, pn.Value);
@@ -128,16 +124,12 @@ public class _4_二叉树Test
     public void _0_获取后继节点Test()
     {
         var data = new List<int> { 4, 1, 8, 2, 7, 10, 3, 5, 9, 11, 6 };
-        BinarySearchTree<int> bst = new BinarySearchTree<int>();
+        BST<int> bst = new BST<int>();
         foreach (var item in data)
         {
             bst.Add(item);
         }
-        Node<int> node = null;
-        bst.PreorderTraversalNode(bst.Root(), n =>
-        {
-            if (n.Value == 6) node = n;
-        });
+        TreeNode<int> node = bst.GetNode(6);
         _output.WriteLine(bst.ToString());
         var pn = bst.Successor(node);
         Assert.Equal(7, pn.Value);
