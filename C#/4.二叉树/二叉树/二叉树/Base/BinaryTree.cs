@@ -130,6 +130,17 @@ public class BinaryTree<T>
     }
 
     /// <summary>
+    /// 创建节点
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="parentNode"></param>
+    /// <returns></returns>
+    protected virtual TreeNode<T> CreateNode(T value, TreeNode<T> parentNode)
+    {
+        return new TreeNode<T>(value, parentNode);
+    }
+
+    /// <summary>
     /// 清除二叉树
     /// </summary>
     public void Clear()

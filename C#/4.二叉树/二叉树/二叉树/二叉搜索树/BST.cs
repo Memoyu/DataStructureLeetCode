@@ -32,7 +32,7 @@ public class BST<T> : BinaryTree<T>
         // 如果是根节点
         if (_root == null)
         {
-            _root = new TreeNode<T>(value, null);
+            _root = CreateNode(value, null);
             _size++;
             // 添加节点后操作
             AfterAdd(_root);
@@ -63,7 +63,7 @@ public class BST<T> : BinaryTree<T>
             }
         }
 
-        var newNode = new TreeNode<T>(value, parent);
+        var newNode = CreateNode(value, parent);
         if (cmp > 0)
         {
             parent.Right = newNode;

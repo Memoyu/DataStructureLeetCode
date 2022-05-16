@@ -27,4 +27,16 @@ public class TreeNode<T>
     /// </summary>
     /// <returns></returns>
     public bool IsTowChildren() => Left != null && Right != null;
+
+    /// <summary>
+    /// 是否为父节点的 左 子节点
+    /// </summary>
+    /// <returns></returns>
+    public bool IsLeftChild() => Parent != null && this == Parent.Left;
+
+    /// <summary>
+    /// 是否为父节点的 右 子节点
+    /// </summary>
+    /// <returns></returns>
+    public bool IsRightChild() => Parent != null && this == Parent.Right;
 }
