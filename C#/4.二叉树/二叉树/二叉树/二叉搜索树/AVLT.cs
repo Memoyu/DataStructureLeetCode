@@ -62,8 +62,157 @@ public class AVLT<T> : BST<T>
     /// 进行平衡恢复
     /// </summary>
     /// <param name="node">node必然是第一个发现不平衡的节点，故为高度最低的不平衡节点（因为是从创建节点一直往上找，一直往父节点找）</param>
+    /// <see cref="AVL树-失衡后进行恢复">https://www.yuque.com/memoyu/ezn2kr/ssxw04</see>
     private void ReBalance(TreeNode<T> node)
     {
+        // 获取不平衡节点node下左右高度最高子树的根节点，以及该节点下左右高度最高子树的根节点；
+        var nodeChild = ((AVLNode<T>)node).TallerChild();
+        var nodeSecChild = ((AVLNode<T>)nodeChild).TallerChild();
+
+        // 通过判断失衡节点的位置，确定恢复（旋转）方案（LL、LR、RL、RR参考注释文档）
+        if (nodeChild.IsLeftChild()) // L
+        {
+            if (nodeSecChild.IsLeftChild()) // LL - 右旋转
+            {
+                RotateRight(node);
+            }
+            else // LR - 左旋转，右旋转
+            {
+                RotateLeft(nodeChild);
+                RotateRight(node);
+            }
+        }
+        else // R
+        {
+            if (nodeSecChild.IsLeftChild()) // RL - 右旋转，左旋转
+            {
+                RotateRight(nodeChild);
+                RotateLeft(node);
+            }
+            else // RR
+            {
+                RotateLeft(nodeChild);
+            }
+        }
+    }
+
+    /// <summary>
+    /// 左旋转
+    /// </summary>
+    /// <param name="nodeDown"></param>
+    private void RotateLeft(TreeNode<T> nodeDown)
+    {
+        // 这里涉及两个节点位置的调整，分别为node、node.Right；
+        // 让node.Right上升一层，成为node的父节点
+        // 让   node   下降一层，成为node.Right的左节点
+
+        // 调整两个节点的层级关系
+        var nodeUp = nodeDown.Right;
+        var nodeUpLeftChild = nodeUp.Left;
+        nodeDown.Right = nodeUpLeftChild;
+        nodeUp.Left = nodeDown;
+
+        AfterRotate(nodeDown, nodeUp, nodeUpLeftChild);
+        /* 左、右旋转后此处后续维护工作一致
+        // 维护旋转影响节点的parent
+        nodeUp.Parent = nodeDown.Parent;
+        if (nodeDown.IsLeftChild())
+        {
+            nodeDown.Parent.Left = nodeUp;
+        }
+        else if (nodeDown.IsRightChild())
+        {
+            nodeDown.Parent.Right = nodeUp;
+        }
+        else // 来到这，说明node是root
+        {
+            _root = nodeUp;
+        }
+
+        // 可能nodeUpRightChild为空，因为nodeUp的 左子树 可能为空
+        if (nodeUpLeftChild != null)
+            nodeUpLeftChild.Parent = nodeDown;
+        nodeDown.Parent = nodeUp;
+
+        // 更新节点高度
+        UpdateHeight(nodeDown);
+        UpdateHeight(nodeUp);*/
+    }
+
+    /// <summary>
+    /// 旋转节点后的维护操作：维护涉及节点的parent等属性值
+    /// </summary>
+    /// <param name="nodeDown">层级下降节点</param>
+    /// <param name="nodeUp">层级上升节点</param>
+    /// <param name="nodeUpChild">层级上升节点的子节点</param>
+    private void AfterRotate(TreeNode<T> nodeDown, TreeNode<T> nodeUp, TreeNode<T> nodeUpChild)
+    {
+        nodeUp.Parent = nodeDown.Parent;
+        if (nodeDown.IsLeftChild())
+        {
+            nodeDown.Parent.Left = nodeUp;
+        }
+        else if (nodeDown.IsRightChild())
+        {
+            nodeDown.Parent.Right = nodeUp;
+        }
+        else // 来到这，说明node是root
+        {
+            _root = nodeUp;
+        }
+
+        // 可能nodeUpRightChild为空，因为nodeUp的 左子树 可能为空
+        if (nodeUpChild != null)
+            nodeUpChild.Parent = nodeDown;
+        nodeDown.Parent = nodeUp;
+
+        // 更新节点高度
+        UpdateHeight(nodeDown);
+        UpdateHeight(nodeUp);
+    }
+
+    /// <summary>
+    /// 右旋转
+    /// </summary>
+    /// <param name="node"></param>
+    private void RotateRight(TreeNode<T> nodeDown)
+    {
+        // 这里涉及两个节点位置的调整，分别为node、node.Left；
+        // 让node.Left上升一层，成为node的父节点
+        // 让   node  下降一层，成为node.Left的右节点
+
+        // 调整两个节点的层级关系
+        var nodeUp = nodeDown.Left;
+        var nodeUpRightChild = nodeUp.Right;
+        nodeDown.Left = nodeUpRightChild;
+        nodeUp.Right = nodeDown;
+
+        AfterRotate(nodeDown, nodeUp, nodeUpRightChild);
+        // 左、右旋转后此处后续维护工作一致
+        // 维护旋转影响节点的parent
+        nodeUp.Parent = nodeDown.Parent;
+        if (nodeDown.IsLeftChild())
+        {
+            nodeDown.Parent.Left = nodeUp;
+        }
+        else if (nodeDown.IsRightChild())
+        {
+            nodeDown.Parent.Right = nodeUp;
+        }
+        else // 来到这，说明node是root
+        {
+            _root = nodeUp;
+        }
+
+        // 可能nodeUpRightChild为空，因为nodeUp的 右子树 可能为空
+        if (nodeUpRightChild != null)
+            nodeUpRightChild.Parent = nodeDown;
+
+        nodeDown.Parent = nodeUp;
+
+        // 更新节点高度
+        UpdateHeight(nodeDown);
+        UpdateHeight(nodeUp);
     }
 }
 
