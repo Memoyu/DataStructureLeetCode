@@ -66,35 +66,68 @@ public class AVLT<T> : BST<T>
     private void ReBalance(TreeNode<T> grand)
     {
         // 获取不平衡节点node下左右高度最高子树的根节点，以及该节点下左右高度最高子树的根节点；
-        var nodeChild = ((AVLNode<T>)grand).TallerChild();
-        var nodeSecChild = ((AVLNode<T>)nodeChild).TallerChild();
+        var parent = ((AVLNode<T>)grand).TallerChild();
+        var node = ((AVLNode<T>)parent).TallerChild();
 
-        // 通过判断失衡节点的位置，确定恢复（旋转）方案（LL、LR、RL、RR参考注释文档）
-        if (nodeChild.IsLeftChild()) // L
+        #region 方案1：根据路径不同，进行不同处理
+
+        /*// 通过判断失衡节点的位置，确定恢复（旋转）方案（LL、LR、RL、RR参考注释文档）
+        if (parent.IsLeftChild()) // L
         {
-            if (nodeSecChild.IsLeftChild()) // LL - 右旋转
+            if (node.IsLeftChild()) // LL - 右旋转
             {
                 RotateRight(grand);
             }
             else // LR - 左旋转，右旋转
             {
-                RotateLeft(nodeChild);
+                RotateLeft(parent);
                 RotateRight(grand);
             }
         }
         else // R
         {
-            if (nodeSecChild.IsLeftChild()) // RL - 右旋转，左旋转
+            if (node.IsLeftChild()) // RL - 右旋转，左旋转
             {
-                RotateRight(nodeChild);
+                RotateRight(parent);
                 RotateLeft(grand);
             }
             else // RR
             {
-                RotateLeft(nodeChild);
+                RotateLeft(parent);
+            }
+        }*/
+
+        #endregion
+
+        #region 方案2：根据结果特征，统一操作
+
+        if (parent.IsLeftChild()) // L
+        {
+            if (node.IsLeftChild()) // LL - 右旋转
+            {
+                Rotate(grand, node, node.Right, parent, parent.Right, grand);
+            }
+            else // LR - 左旋转，右旋转
+            {
+                Rotate(grand, parent, node.Left, node, node.Right, grand);
             }
         }
+        else // R
+        {
+            if (node.IsLeftChild()) // RL - 右旋转，左旋转
+            {
+                Rotate(grand, grand, node.Left, node, node.Right, parent);
+            }
+            else // RR
+            {
+                Rotate(grand, grand, parent.Left, parent, node.Left, node);
+            }
+        }
+
+        #endregion
     }
+
+    #region 方案1：根据路径不同，进行不同处理
 
     /// <summary>
     /// 左旋转
@@ -108,12 +141,12 @@ public class AVLT<T> : BST<T>
 
         // 调整两个节点的层级关系
         var parent = grand.Right;
-        var child = parent.Left;
-        grand.Right = child;
+        var node = parent.Left;
+        grand.Right = node;
         parent.Left = grand;
 
-        AfterRotate(grand, parent, child);
-        /*// 左、右旋转后此处后续维护工作一致
+        AfterRotate(grand, parent, node);
+        // 左、右旋转后此处后续维护工作一致
         // 维护旋转影响节点的parent
         parent.Parent = grand.Parent;
         if (grand.IsLeftChild())
@@ -129,41 +162,9 @@ public class AVLT<T> : BST<T>
             _root = parent;
         }
 
-        // 可能child为空，因为parent的 左子树 可能为空
-        if (child != null)
-            child.Parent = grand;
-        grand.Parent = parent;
-
-        // 更新节点高度
-        UpdateHeight(grand);
-        UpdateHeight(parent);*/
-    }
-
-    /// <summary>
-    /// 旋转节点后的维护操作：维护涉及节点的parent等属性值
-    /// </summary>
-    /// <param name="grand">层级下降节点</param>
-    /// <param name="parent">层级上升节点</param>
-    /// <param name="child">层级上升节点的子节点</param>
-    private void AfterRotate(TreeNode<T> grand, TreeNode<T> parent, TreeNode<T> child)
-    {
-        parent.Parent = grand.Parent;
-        if (grand.IsLeftChild())
-        {
-            grand.Parent.Left = parent;
-        }
-        else if (grand.IsRightChild())
-        {
-            grand.Parent.Right = parent;
-        }
-        else // 来到这，说明grand是root
-        {
-            _root = parent;
-        }
-
-        // 可能child为空，因为parent的 左子树 可能为空
-        if (child != null)
-            child.Parent = grand;
+        // 可能node为空，因为parent的 左子树 可能为空
+        if (node != null)
+            node.Parent = grand;
         grand.Parent = parent;
 
         // 更新节点高度
@@ -183,12 +184,12 @@ public class AVLT<T> : BST<T>
 
         // 调整两个节点的层级关系
         var parent = grand.Left;
-        var child = parent.Right;
-        grand.Left = child;
+        var node = parent.Right;
+        grand.Left = node;
         parent.Right = grand;
 
-        AfterRotate(grand, parent, child);
-        /*// 左、右旋转后此处后续维护工作一致
+        AfterRotate(grand, parent, node);
+        // 左、右旋转后此处后续维护工作一致
         // 维护旋转影响节点的parent
         parent.Parent = grand.Parent;
         if (grand.IsLeftChild())
@@ -204,16 +205,105 @@ public class AVLT<T> : BST<T>
             _root = parent;
         }
 
-        // 可能child为空，因为parent的 右子树 可能为空
-        if (child != null)
-            child.Parent = grand;
+        // 可能node为空，因为parent的 右子树 可能为空
+        if (node != null)
+            node.Parent = grand;
 
         grand.Parent = parent;
 
         // 更新节点高度
         UpdateHeight(grand);
-        UpdateHeight(parent);*/
+        UpdateHeight(parent);
     }
+
+    /// <summary>
+    /// 旋转节点后的维护操作：维护涉及节点的parent等属性值
+    /// </summary>
+    /// <param name="grand">层级下降节点</param>
+    /// <param name="parent">层级上升节点</param>
+    /// <param name="node">层级上升节点的子节点</param>
+    private void AfterRotate(TreeNode<T> grand, TreeNode<T> parent, TreeNode<T> node)
+    {
+        parent.Parent = grand.Parent;
+        if (grand.IsLeftChild())
+        {
+            grand.Parent.Left = parent;
+        }
+        else if (grand.IsRightChild())
+        {
+            grand.Parent.Right = parent;
+        }
+        else // 来到这，说明grand是root
+        {
+            _root = parent;
+        }
+
+        // 可能node为空，因为parent的 左子树 可能为空
+        if (node != null)
+            node.Parent = grand;
+        grand.Parent = parent;
+
+        // 更新节点高度
+        UpdateHeight(grand);
+        UpdateHeight(parent);
+    }
+
+    #endregion
+
+    #region 方案2：根据结果特征，统一操作
+
+    /// <summary>
+    /// 统一旋转节点操作(源于从分析图中可知，b.Left、f.Right旋转前后都是保持不变的，故 a、g 无需传入)
+    /// </summary>
+    /// <param name="r">不平衡子树根节点, </param>
+    /// <param name="b">分块b</param>
+    /// <param name="c">分块c</param>
+    /// <param name="d">分块d</param>
+    /// <param name="e">分块e</param>
+    /// <param name="f">分块f</param>
+    private void Rotate(
+        TreeNode<T> r,
+        TreeNode<T> b, TreeNode<T> c, TreeNode<T> d, TreeNode<T> e, TreeNode<T> f)
+    {
+        d.Parent = r.Parent;
+        if (r.IsLeftChild())
+        {
+            r.Parent.Left = d;
+        }
+        else if (r.IsRightChild())
+        {
+            r.Parent.Right = d;
+        }
+        else
+        {
+            _root = d;
+        }
+
+        // 处理 a - b - c 节点间的关系
+        // 反转前后，b的left始终是a ，故不用调整
+        // b.Left = a;
+        // if (a != null) a.Parent = b;
+        b.Right = c;
+        if (c != null) c.Parent = b;
+        UpdateHeight(b);
+
+        // 处理 e - f - g 节点间的关系
+        f.Left = e;
+        if (e != null) e.Parent = f;
+        // 反转前后，f的right始终是g ，故不用调整
+        // f.Right = g;
+        // if (g != null) g.Parent = f;
+        UpdateHeight(f);
+
+        // 处理 d - b - f 节点间的关系
+        d.Left = b;
+        d.Right = f;
+        b.Parent = d;
+        f.Parent = d;
+        UpdateHeight(d);
+    }
+
+    #endregion
 }
 
 public class AVLNode<T> : TreeNode<T>
