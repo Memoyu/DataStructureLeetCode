@@ -39,4 +39,23 @@ public class TreeNode<T>
     /// </summary>
     /// <returns></returns>
     public bool IsRightChild() => Parent != null && this == Parent.Right;
+
+    /// <summary>
+    /// 节点的 兄弟节点
+    /// </summary>
+    /// <returns></returns>
+    public TreeNode<T> Sibling()
+    {
+        if (IsLeftChild())
+        {
+            return Parent.Right;
+        }
+
+        if (IsRightChild())
+        {
+            return Parent.Left;
+        }
+
+        return null;
+    }
 }

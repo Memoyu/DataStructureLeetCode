@@ -133,7 +133,14 @@ public class BST<T> : BinaryTree<T>
             if (node.Parent.Left != null) node.Parent.Left = null;
             else node.Parent.Right = null;
         }
+
+        AfterRemove(node);
     }
+
+    protected virtual void AfterRemove(TreeNode<T> node)
+    {
+    }
+
 
     /// <summary>
     /// 二叉搜索树中是否包含传入值的节点

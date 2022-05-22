@@ -35,7 +35,21 @@ public class AVLT<T> : BST<T>
                 break;
             }
         }
+    }
 
+    protected override void AfterRemove(TreeNode<T> node)
+    {
+        while ((node = node.Parent) != null)
+        {
+            if (IsBalanced(node))
+            { // 平衡的，进行高度更新
+                UpdateHeight(node);
+            }
+            else
+            { // 不平衡的，进行恢复平衡，源于回复平衡后，可能导致node.Parent失去平衡，故需要继续进行检查平衡
+                ReBalance(node);
+            }
+        }
     }
 
     /// <summary>
