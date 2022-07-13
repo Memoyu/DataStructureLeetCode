@@ -150,14 +150,51 @@ public class BinaryTree<T>
     }
 
     /// <summary>
-    /// 前序遍历节点
+    /// 前序遍历节点，根 -> 左 -> 右
     /// </summary>
     public void PreorderTraversal(Action<T> action)
     {
         if (action == null) return;
-        PreorderTraversal(_root, action);
+
+        //非递归
+        PreorderTraversalNonRecursive(_root, action);
+        // 递归
+        // PreorderTraversal(_root, action);
     }
 
+    /// <summary>
+    /// 前序遍历-非递归版本
+    /// </summary>
+    /// <param name="node"></param>
+    /// <param name="action"></param>
+    private void PreorderTraversalNonRecursive(TreeNode<T> node, Action<T> action)
+    {
+        // 可看示例图：https://www.yuque.com/memoyu/ezn2kr/xzxvwg#Olc23
+        // 因为前序遍历顺序为：根 -> 左 -> 右；所以，在我们拿到根节点后，一直往左走（根 -> 左），同时将右子节点存入栈中，直到左子节点为空，此时再往右子节点找（取出栈数据）
+        if (node == null) return;
+        var stack = new Stack<TreeNode<T>>();
+        while (true)
+        {
+            // 节点不为空时，则将其右节点入栈
+            if (node != null)
+            {
+                action(node.Value); //做节点操作 
+                stack.Push(node.Right); // 将右节点入栈
+                node = node.Left; // 往根节点的右节点继续往下找
+            }
+            else // 节点为空时，则可能为节点遍历完成（栈中数据为空）或node的左子节点没了 
+            {
+                if (!stack.Any()) return; // 如果栈中没有了元素，说明遍历完了
+                node = stack.Pop(); // 弹出栈顶的右节点，作为根节点，继续循环
+            }
+        }
+    }
+
+    /// <summary>
+    /// 前序遍历-递归版本
+    /// </summary>
+    /// <param name="node"></param>
+    /// <param name="action"></param>
     private void PreorderTraversal(TreeNode<T> node, Action<T> action)
     {
         if (node == null) return;
@@ -167,14 +204,53 @@ public class BinaryTree<T>
     }
 
     /// <summary>
-    /// 中序遍历节点
+    /// 中序遍历节点，左 -> 根 -> 右
     /// </summary>
     public void InorderTraversal(Action<T> action)
     {
         if (action == null) return;
-        IneorderTraversal(_root, action);
+
+        // 非递归
+        IneorderTraversalNonRecursive(_root, action);
+
+        // 递归
+        // IneorderTraversal(_root, action);
     }
 
+    /// <summary>
+    /// 中序遍历-非递归版本
+    /// </summary>
+    /// <param name="node"></param>
+    /// <param name="action"></param>
+    private void IneorderTraversalNonRecursive(TreeNode<T> node, Action<T> action)
+    {
+        //可看示例图：https://www.yuque.com/memoyu/ezn2kr/xzxvwg#BPwTQ
+        // 因为前序遍历顺序为：左 -> 根 -> 右；所以，同样是拿到根节点后一直往左边遍历，并将遍历到的节点存入栈，直到最后节点为空时，从栈中弹出节点，并执行处理，然后将弹出节点的右节点拿出，进行下遍历
+        if (node == null) return;
+        var stack = new Stack<TreeNode<T>>();
+        while (true)
+        {
+            // 节点不为空，则将其入栈，并获取其左节点，继续遍历
+            if (node != null)
+            {
+                stack.Push(node);
+                node = node.Left;
+            }
+            else // 为空时，则可能时栈中节点没了（遍历完成）或 node左子节点已经为空
+            {
+                if (!stack.Any()) return;
+                node = stack.Pop(); // 此时，需要从栈中弹出节点
+                action(node.Value); // 进行处理
+                node = node.Right; // 并去除节点右子节点，进行下轮循环
+            }
+        }
+    }
+
+    /// <summary>
+    /// 中序遍历-递归版本
+    /// </summary>
+    /// <param name="node"></param>
+    /// <param name="action"></param>
     private void IneorderTraversal(TreeNode<T> node, Action<T> action)
     {
         if (node == null) return;
@@ -184,7 +260,7 @@ public class BinaryTree<T>
     }
 
     /// <summary>
-    /// 后序遍历节点
+    /// 后序遍历节点，左 -> 右 -> 根
     /// </summary>
     public void PostorderTraversal(Action<T> action)
     {
@@ -192,6 +268,22 @@ public class BinaryTree<T>
         PostorderTraversal(_root, action);
     }
 
+    /// <summary>
+    /// 后序遍历-非递归版本
+    /// </summary>
+    /// <param name="node"></param>
+    /// <param name="action"></param>
+    private void PostorderTraversalNonRecursive(TreeNode<T> node, Action<T> action)
+    {
+        if (node == null) return;
+        var stack = new Stack<TreeNode<T>>();
+    }
+
+    /// <summary>
+    /// 后序遍历-递归版本
+    /// </summary>
+    /// <param name="node"></param>
+    /// <param name="action"></param>
     private void PostorderTraversal(TreeNode<T> node, Action<T> action)
     {
         if (node == null) return;

@@ -17,6 +17,59 @@ public class _4_二叉树Test
     }
 
     [Fact]
+    public void 二叉搜索树遍历Test()
+    {
+        // List<int> data = Enumerable.Range(1, 10).ToList();
+        var data = new List<int> { 7, 4, 9, 2, 5, 8, 11, 1, 3, 10, 12 };
+        var bst = new BST<int>();
+
+        foreach (var item in data)
+        {
+            bst.Add(item);
+        }
+
+        var preResult = "";
+        var inResult = "";
+        var postResult = "";
+        var levelResult = "";
+
+        var preAssert = "7 4 2 1 3 5 9 8 11 10 12 ";
+        var inAssert = "1 2 3 4 5 7 8 9 10 11 12 ";
+        var postAssert = "1 3 2 5 4 8 10 12 11 9 7 ";
+        var levelAssert = "7 4 9 2 5 8 11 1 3 10 12 ";
+
+        _output.WriteLine("------------Preorder Traversal------------");
+        bst.PreorderTraversal(val =>
+        {
+            preResult += $"{val} ";
+        });
+
+        _output.WriteLine("------------Inorder Traversal------------");
+        bst.InorderTraversal(val =>
+        {
+            inResult += $"{val} ";
+        });
+
+        _output.WriteLine("------------Postorder Traversal------------");
+        bst.PostorderTraversal(val =>
+        {
+            postResult += $"{val} ";
+        });
+
+        _output.WriteLine("------------Level Order Traversal------------");
+        bst.LevelOrderTraversal(val =>
+        {
+            levelResult += $"{val} ";
+        });
+
+
+        Assert.Equal(preAssert, preResult);
+        Assert.Equal(inAssert, inResult);
+        Assert.Equal(postAssert, postResult);
+        Assert.Equal(levelAssert, levelResult);
+    }
+
+    [Fact]
     public void 实现二叉搜索树Test()
     {
         // List<int> data = Enumerable.Range(1, 10).ToList();
