@@ -38,25 +38,21 @@ public class _4_二叉树Test
         var postAssert = "1 3 2 5 4 8 10 12 11 9 7 ";
         var levelAssert = "7 4 9 2 5 8 11 1 3 10 12 ";
 
-        _output.WriteLine("------------Preorder Traversal------------");
         bst.PreorderTraversal(val =>
         {
             preResult += $"{val} ";
         });
 
-        _output.WriteLine("------------Inorder Traversal------------");
         bst.InorderTraversal(val =>
         {
             inResult += $"{val} ";
         });
 
-        _output.WriteLine("------------Postorder Traversal------------");
         bst.PostorderTraversal(val =>
         {
             postResult += $"{val} ";
         });
 
-        _output.WriteLine("------------Level Order Traversal------------");
         bst.LevelOrderTraversal(val =>
         {
             levelResult += $"{val} ";

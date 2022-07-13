@@ -225,7 +225,7 @@ public class BinaryTree<T>
     private void IneorderTraversalNonRecursive(TreeNode<T> node, Action<T> action)
     {
         //可看示例图：https://www.yuque.com/memoyu/ezn2kr/xzxvwg#BPwTQ
-        // 因为前序遍历顺序为：左 -> 根 -> 右；所以，同样是拿到根节点后一直往左边遍历，并将遍历到的节点存入栈，直到最后节点为空时，从栈中弹出节点，并执行处理，然后将弹出节点的右节点拿出，进行下遍历
+        // 因为中序遍历顺序为：左 -> 根 -> 右；所以，同样是拿到根节点后一直往左边遍历，并将遍历到的节点存入栈，直到最后节点为空时，从栈中弹出节点，并执行处理，然后将弹出节点的右节点拿出，进行下遍历
         if (node == null) return;
         var stack = new Stack<TreeNode<T>>();
         while (true)
@@ -265,7 +265,10 @@ public class BinaryTree<T>
     public void PostorderTraversal(Action<T> action)
     {
         if (action == null) return;
-        PostorderTraversal(_root, action);
+        //非递归
+        PostorderTraversalNonRecursive(_root, action);
+        // 递归
+        // PostorderTraversal(_root, action);
     }
 
     /// <summary>
@@ -275,8 +278,34 @@ public class BinaryTree<T>
     /// <param name="action"></param>
     private void PostorderTraversalNonRecursive(TreeNode<T> node, Action<T> action)
     {
+        //可看示例图：https://www.yuque.com/memoyu/ezn2kr/xzxvwg#SEo6m
+        // 因为后序遍历节点，左 -> 右 -> 根；该方式以栈中节点为遍历依据，首先用根节点填充，然后循环内部对栈顶的元素进行处理，判断栈顶中节点是否为叶子节点 或 本次出栈节点是否为上次出栈节点的父节点，是则进行出栈，并处理，否则进行右、左子节点入栈
         if (node == null) return;
         var stack = new Stack<TreeNode<T>>();
+        TreeNode<T> prev = null; // 记录上次出栈的节点
+        stack.Push(node); // 先将根节点入栈
+        while (stack.Any())
+        {
+            var top = stack.Peek();
+            if (top.IsLeaf() || (prev != null && top == prev.Parent) ) // 如果是叶子节点，则进行出栈，进行处理
+            {
+                prev = stack.Pop();
+                action(prev.Value);
+            }
+            else // 否则，不是叶子节点，则将该节点的右、左子节点进行入栈（顺序是必要的，因为后续遍历顺序为左、右、根，所以出栈对应左、右）
+            {
+                if (top.Right != null) // 如果存在右子节点，则进行入栈
+                {
+                    stack.Push(top.Right);
+                }
+
+                if (top.Left != null) // 如果存在左子节点，则进行入栈 
+                {
+                    stack.Push(top.Left);
+                }
+
+            }
+        }
     }
 
     /// <summary>
