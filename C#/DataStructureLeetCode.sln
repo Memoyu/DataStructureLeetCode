@@ -30,6 +30,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.排序算法", "1.排序�
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "排序算法", "算法\1.排序算法\排序算法\排序算法.csproj", "{FB8D4994-31D1-4025-A764-A8CDA0FB2B3A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.集合", "5.集合", "{27A49925-6910-45CF-B8B4-75843332A343}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "6.映射", "6.映射", "{0ADB6AB9-02DF-4D32-9FCE-BBFDF306AE47}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "7.哈希表", "7.哈希表", "{7495F661-6ABF-421F-BC58-B1A31287EAE0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "8.堆", "8.堆", "{74C7750F-7EE9-45E9-84BB-5ABDAB27D364}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "堆", "8.堆\堆\堆.csproj", "{5CF95C42-3013-4B47-8F7E-703B2EE54E19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,6 +70,10 @@ Global
 		{FB8D4994-31D1-4025-A764-A8CDA0FB2B3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FB8D4994-31D1-4025-A764-A8CDA0FB2B3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FB8D4994-31D1-4025-A764-A8CDA0FB2B3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CF95C42-3013-4B47-8F7E-703B2EE54E19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CF95C42-3013-4B47-8F7E-703B2EE54E19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CF95C42-3013-4B47-8F7E-703B2EE54E19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CF95C42-3013-4B47-8F7E-703B2EE54E19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +85,7 @@ Global
 		{B4C0536D-099E-40AE-87F5-FAB1D6A65AB7} = {438FE13B-73A4-4A86-8F65-FDF7702C7CED}
 		{9A59E5E5-2001-4560-BAB4-66948EDB6FA0} = {8C70E381-4459-4B34-9E14-4B16166C8C61}
 		{FB8D4994-31D1-4025-A764-A8CDA0FB2B3A} = {9A59E5E5-2001-4560-BAB4-66948EDB6FA0}
+		{5CF95C42-3013-4B47-8F7E-703B2EE54E19} = {74C7750F-7EE9-45E9-84BB-5ABDAB27D364}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {FF84AAD0-028F-4933-B6FF-E4B1D3022BAD}
