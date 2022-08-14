@@ -1,1 +1,1 @@
-DataStructrueLeetCode
+DataStructureLeetCode
