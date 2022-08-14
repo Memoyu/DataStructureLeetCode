@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.Intrinsics.X86;
+using 排序算法.冒泡排序;
 
 namespace 排序算法;
 
@@ -91,9 +92,7 @@ public abstract class BaseSort<T> : IComparable<BaseSort<T>>
     protected void Swap(int ind1, int ind2)
     {
         _swapCnt++;
-        var temp = Array[ind1];
-        Array[ind1] = Array[ind2];
-        Array[ind2] = temp;
+        (Array[ind1], Array[ind2]) = (Array[ind2], Array[ind1]);
     }
 
     public override string ToString()
@@ -129,10 +128,10 @@ public abstract class BaseSort<T> : IComparable<BaseSort<T>>
         {
             students[i] = new Student(i * 10, 10);
         }
-        var types = new Type[] { typeof(Student) };//具体类型
-        var trueType = GetType().MakeGenericType(types);//根据类型参数获取具象泛型
-        var sort =Activator.CreateInstance(trueType);
-       //  sort.Sort(students);
+        
+        var type = GetType().GetGenericTypeDefinition().MakeGenericType(typeof(Student));//根据类型参数获取具象泛型
+        var sort =(BaseSort<Student>) Activator.CreateInstance(type);
+        sort.Sort(students);
         for (int i = 1; i < students.Length; i++)
         {
             int score = students[i].Score;

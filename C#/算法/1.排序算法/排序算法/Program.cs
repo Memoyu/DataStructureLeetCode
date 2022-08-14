@@ -2,4 +2,4 @@
 
 var d = new BubbleSort<int>();
 d.Sort(new int[] { 2,3,4,9,6,7});
-d.IsStable();
+Console.WriteLine(d.ToString());
