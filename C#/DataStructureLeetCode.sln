@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32127.271
@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2.栈", "2.栈", "{78F1F1A4
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "栈", "2.栈\栈\栈.csproj", "{EB015BAC-FFB1-4196-B913-4D69DAB328B7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStructrue.Test", "DataStructrue.Test\DataStructrue.Test.csproj", "{F5BE43C2-DFEC-4F52-B99B-8E731B7034E7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataStructrue.Test", "DataStructure.Test\DataStructure.Test.csproj", "{F5BE43C2-DFEC-4F52-B99B-8E731B7034E7}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3.队列", "3.队列", "{E97DDC4E-1004-4421-BE8E-1D450D838E57}"
 EndProject
