@@ -19,8 +19,10 @@ public class _5_排序算法Test
     {
         _output = output;
 
-        var range = 1000;
+        var range = 100000;
         var cnt = 10000;
+        // var range = 100;
+        // var cnt = 10;
         _array = new int[cnt];
         Random r = new Random();
         for (int i = 0; i < _array.Length; i++)
@@ -38,7 +40,8 @@ public class _5_排序算法Test
         {
             // new BubbleSort<int>(),
             // new BubbleSort_1<int>(),
-            new BubbleSort_2<int>()
+            new BubbleSort_2<int>(),
+            new SelectionSort<int>()
         };
 
         foreach (var sorter in sorters)

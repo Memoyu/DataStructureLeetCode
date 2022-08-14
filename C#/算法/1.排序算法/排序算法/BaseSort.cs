@@ -9,7 +9,7 @@ public abstract class BaseSort<T> : IComparable<BaseSort<T>>
     where T : IComparable<T>
 {
     // 排序数组
-    protected T[] Array { get; set; }
+    protected T[] array { get; set; }
     // 比对计数器
     private int _cmpCnt;
     // 交换计数器
@@ -25,7 +25,7 @@ public abstract class BaseSort<T> : IComparable<BaseSort<T>>
     {
         Console.WriteLine(GetType().Name);
         if (array == null || array.Count() < 2) return;
-        Array = array;
+        this.array = array;
         var sw = new Stopwatch();
         sw.Start();
         Sort();
@@ -69,7 +69,7 @@ public abstract class BaseSort<T> : IComparable<BaseSort<T>>
     protected int Cmp(int ind1, int ind2)
     {
         _cmpCnt++;
-        return Array[ind1].CompareTo(Array[ind2]);
+        return array[ind1].CompareTo(array[ind2]);
     }
 
     /// <summary>
@@ -92,7 +92,7 @@ public abstract class BaseSort<T> : IComparable<BaseSort<T>>
     protected void Swap(int ind1, int ind2)
     {
         _swapCnt++;
-        (Array[ind1], Array[ind2]) = (Array[ind2], Array[ind1]);
+        (array[ind1], array[ind2]) = (array[ind2], array[ind1]);
     }
 
     public override string ToString()

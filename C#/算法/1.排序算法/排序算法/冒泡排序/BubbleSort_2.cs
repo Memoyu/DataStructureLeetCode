@@ -9,7 +9,7 @@ public class BubbleSort_2<T> : BaseSort<T> where T : IComparable<T>
     protected override void Sort()
     {
         // 比较的结束点，每轮确定一次本轮的最大值，并将其放在最后
-        for (int end = Array.Length - 1 ; end > 0; end--)
+        for (int end = array.Length - 1 ; end > 0; end--)
         {
             // 用于记录最后一次进行交换的索引值
             var sortedIndex = 1;

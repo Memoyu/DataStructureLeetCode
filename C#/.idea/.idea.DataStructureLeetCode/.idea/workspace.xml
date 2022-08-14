@@ -9,13 +9,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0c2d57f-21b7-483d-88be-147e5562314a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/DataStructrue.Test/1-链表Test.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataStructrue.Test/2-栈Test.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataStructrue.Test/3-队列Test.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataStructrue.Test/4-二叉树Test.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataStructrue.Test/5-排序算法Test.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataStructrue.Test/DataStructrue.Test.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataStructrueLeetCode.sln" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/冒泡排序/SelectionSort.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.DataStructureLeetCode/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DataStructureLeetCode/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure.Test/5-排序算法Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure.Test/5-排序算法Test.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/算法/1.排序算法/排序算法/BaseSort.cs" beforeDir="false" afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/BaseSort.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/算法/1.排序算法/排序算法/冒泡排序/BubbleSort.cs" beforeDir="false" afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/冒泡排序/BubbleSort.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/算法/1.排序算法/排序算法/冒泡排序/BubbleSort_1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/冒泡排序/BubbleSort_1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/算法/1.排序算法/排序算法/冒泡排序/BubbleSort_2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/冒泡排序/BubbleSort_2.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +26,9 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="2DKMuFhjAKKRVgIjvkXm36oOQLh" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -36,11 +38,11 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "settings.editor.selected.configurable": "vcs.Git",
+    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager" selected=".NET Project.二叉树">
+  <component name="RunManager" selected=".NET Project.链表">
     <configuration name="链表" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -141,6 +143,7 @@
       <option name="presentableId" value="Default" />
       <updated>1660443545403</updated>
       <workItem from="1660443550487" duration="23000" />
+      <workItem from="1660443894588" duration="2901000" />
     </task>
     <servers />
   </component>
@@ -149,6 +152,17 @@
   </component>
   <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
