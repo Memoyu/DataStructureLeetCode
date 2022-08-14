@@ -76,12 +76,15 @@ public class BinaryHeap<T> : Heap<T> where T : IComparable<T>
             int parentIndex = (index - 1) >> 1;
             var parentValue = _array[parentIndex];
             // 如果value 小于 parentValue 则结束 循环
-            if (value.CompareTo(parentValue) >= 0) return;
-            // 交换两个节点的值
-            (_array[index], _array[parentIndex]) = (_array[parentIndex], _array[index]);
+            if (value.CompareTo(parentValue) >= 0) break;
+            // 将父元素的值直接存入index位置
+            _array[index] = parentValue;
             // 重新赋值index
             index = parentIndex;
         }
+
+        // 将 value 放到最终index位置，完成上滤
+        _array[index] = value;
     }
 
     /// <summary>
