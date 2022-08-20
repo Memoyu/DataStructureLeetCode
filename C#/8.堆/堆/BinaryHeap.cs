@@ -25,7 +25,7 @@ public class BinaryHeap<T> : Heap<T> where T : IComparable<T>
     {
         for (int i = 0; i < _size; i++)
         {
-            _array[i] = default(T);
+            _array[i] = default;
         }
 
         _size = 0;
@@ -53,7 +53,19 @@ public class BinaryHeap<T> : Heap<T> where T : IComparable<T>
 
     public T Remove()
     {
-        throw new NotImplementedException();
+        // 校验堆是否为空
+        EmptyCheck();
+        // 获取堆顶元素
+        T root = _array[0];
+        var lastIndex = --_size;
+        // 覆盖堆顶元素
+        _array[0] = _array[lastIndex];
+        // 删除最后一个元素
+        _array[lastIndex] = default;
+        // 进行下滤操作
+        SiftDown(0);
+
+        return root;
     }
 
     public T Replace(T value)
@@ -63,14 +75,53 @@ public class BinaryHeap<T> : Heap<T> where T : IComparable<T>
 
     /// <summary>
     /// 上滤操作
-    /// 从开始索引起，一直往上进行比对，比index对应的值还要小时，则进行值位置交换，否则大于或到达根节点时终止上滤
+    /// 从开始索引index起，一直往下进行比对，子节点中最大的值比index对应的值大时，则与最大的节点进行位置交换，否则小于或到没有子节点时终止下滤
+    /// </summary>
+    /// <param name="index"></param>
+    private void SiftDown(int index)
+    {
+        // 获取index对应的值
+        T value = _array[index];
+        // 获取第一个叶子节点的索引，因为只有当index为非叶子节点时，才需要进行下滤
+        // 利用完全二叉树的性质可知，非叶子节点数为 floor(n / 2)，代码中可省略floor，参考：https://www.yuque.com/memoyu/ezn2kr/tvew68
+        var half = _size >> 2; // 等价于 _size / 2
+        while (index < half)
+        {
+            // 默认左子节点最大，将其取出
+            int childIndex = (index << 1) + 1; // 由完全二叉树性质可得index左子节点为 (index * 2) + 1 = (index << 1) + 1
+            var child = _array[childIndex];
+            
+            // 将child与右子节点比较，比左子节点大时，则将右子节点赋值给child
+            var rightIndex = childIndex + 1; // 由完全二叉树性质可得index左子节点为 (index * 2) + 1 = (index << 1) + 1
+            // 算出的右子节点索引是否在_size内，并且值是否大于左子节点
+            if (rightIndex < _size 
+                && child.CompareTo(_array[rightIndex]) > 0)
+            {
+                
+                childIndex = rightIndex;
+                child = _array[childIndex];
+            }
+
+            if (value.CompareTo(child) >= 0) break;
+
+            _array[index] = child;
+            index = childIndex;
+        }
+        
+        // 将值赋值给最终下滤的索引
+        _array[index] = value;
+    }
+    
+    /// <summary>
+    /// 上滤操作
+    /// 从开始索引index起，一直往上进行比对，根节点比index对应的值还要小时，则进行位置交换，否则大于或到达根节点时终止上滤
     /// </summary>
     /// <param name="index">上滤开始索引</param>
     private void SiftUp(int index)
     {
         // 备份开始上滤的值
         T value = _array[index];
-        
+
         // 达到根节点，结束循环
         while (index > 0)
         {

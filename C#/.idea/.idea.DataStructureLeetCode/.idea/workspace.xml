@@ -19,6 +19,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d4f98ebdd878db4fbd98872756eb7be6ad9e468fe5cd6b16385d8c4993109a/List.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -182,6 +185,7 @@
       <workItem from="1660443894588" duration="6064000" />
       <workItem from="1660485007409" duration="5612000" />
       <workItem from="1660576480440" duration="663000" />
+      <workItem from="1660961138576" duration="5414000" />
     </task>
     <task id="LOCAL-00001" summary="feat：add selection sort">
       <created>1660448293340</created>
