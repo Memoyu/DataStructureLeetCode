@@ -13,5 +13,10 @@ public class HeapSort<T> : BaseSort<T> where T : IComparable<T>
     /// <param name="index"></param>
     private void SiftDown(int index)
     {
+        var half = (array.Length >> 1);
+        while (index < half)
+        {
+            
+        }
     }
 }

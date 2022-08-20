@@ -100,7 +100,7 @@ public class BinaryHeap<T> : Heap<T> where T : IComparable<T>
         T value = _array[index];
         // 获取第一个叶子节点的索引，因为只有当index为非叶子节点时，才需要进行下滤
         // 利用完全二叉树的性质可知，非叶子节点数为 floor(n / 2)，代码中可省略floor，参考：https://www.yuque.com/memoyu/ezn2kr/tvew68
-        var half = _size >> 2; // 等价于 _size / 2
+        var half = _size >> 1; // 等价于 _size / 2
         while (index < half)
         {
             // 默认左子节点最大，将其取出
