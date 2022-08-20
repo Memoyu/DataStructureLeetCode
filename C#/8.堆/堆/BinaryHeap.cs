@@ -45,7 +45,9 @@ public class BinaryHeap<T> : Heap<T> where T : IComparable<T>
 
     public T Get()
     {
+        // 校验堆是否为空
         EmptyCheck();
+        // 返回堆顶
         return _array[0];
     }
 
