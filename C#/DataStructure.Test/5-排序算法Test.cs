@@ -5,7 +5,8 @@ using System.Text.Json;
 using Xunit;
 using Xunit.Abstractions;
 using 排序算法;
-using 排序算法.冒泡排序;
+using 排序算法._1.冒泡排序;
+using 排序算法._2.选择排序;
 
 namespace DataStructrue.Test;
 

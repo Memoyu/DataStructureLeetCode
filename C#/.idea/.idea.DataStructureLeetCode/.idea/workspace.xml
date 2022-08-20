@@ -13,6 +13,14 @@
     <list default="true" id="a0c2d57f-21b7-483d-88be-147e5562314a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DataStructureLeetCode/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DataStructureLeetCode/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/8.堆/堆/BinaryHeap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/8.堆/堆/BinaryHeap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure.Test/5-排序算法Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure.Test/5-排序算法Test.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/算法/1.排序算法/排序算法/BaseSort.cs" beforeDir="false" afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/BaseSort.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/算法/1.排序算法/排序算法/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/算法/1.排序算法/排序算法/冒泡排序/BubbleSort.cs" beforeDir="false" afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/1.冒泡排序/BubbleSort.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/算法/1.排序算法/排序算法/冒泡排序/BubbleSort_1.cs" beforeDir="false" afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/1.冒泡排序/BubbleSort_1.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/算法/1.排序算法/排序算法/冒泡排序/BubbleSort_2.cs" beforeDir="false" afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/1.冒泡排序/BubbleSort_2.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/算法/1.排序算法/排序算法/冒泡排序/HeapSort.cs" beforeDir="false" afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/3.堆排序/HeapSort.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/算法/1.排序算法/排序算法/冒泡排序/SelectionSort.cs" beforeDir="false" afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/2.选择排序/SelectionSort.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -185,7 +193,7 @@
       <workItem from="1660443894588" duration="6064000" />
       <workItem from="1660485007409" duration="5612000" />
       <workItem from="1660576480440" duration="663000" />
-      <workItem from="1660961138576" duration="5414000" />
+      <workItem from="1660961138576" duration="9275000" />
     </task>
     <task id="LOCAL-00001" summary="feat：add selection sort">
       <created>1660448293340</created>

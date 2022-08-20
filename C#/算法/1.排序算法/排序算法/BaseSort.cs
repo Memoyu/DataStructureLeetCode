@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Runtime.Intrinsics.X86;
-using 排序算法.冒泡排序;
+using 排序算法._1.冒泡排序;
 
 namespace 排序算法;
 

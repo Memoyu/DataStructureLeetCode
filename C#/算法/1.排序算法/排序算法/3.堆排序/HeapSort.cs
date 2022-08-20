@@ -1,4 +1,4 @@
-namespace 排序算法.冒泡排序;
+namespace 排序算法._3.堆排序;
 
 public class HeapSort<T> : BaseSort<T> where T : IComparable<T>
 {

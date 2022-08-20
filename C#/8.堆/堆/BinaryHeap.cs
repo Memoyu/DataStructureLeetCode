@@ -70,7 +70,23 @@ public class BinaryHeap<T> : Heap<T> where T : IComparable<T>
 
     public T Replace(T value)
     {
-        throw new NotImplementedException();
+        // 检查值是否为null
+        ValueNotNullCheck(value);
+
+        T root = default;
+        if (_size == 0)
+        {
+            _array[0] = value;
+            _size++;
+        }
+        else
+        {
+            root = _array[0];
+            _array[0] = value;
+            SiftDown(0);
+        }
+
+        return root;
     }
 
     /// <summary>

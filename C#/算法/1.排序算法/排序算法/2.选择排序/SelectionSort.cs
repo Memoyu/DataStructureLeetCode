@@ -1,4 +1,4 @@
-namespace 排序算法.冒泡排序;
+namespace 排序算法._2.选择排序;
 
 public class SelectionSort<T> : BaseSort<T> where T : IComparable<T>
 {
