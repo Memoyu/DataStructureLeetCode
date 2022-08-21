@@ -41,9 +41,7 @@ public class _5_排序算法Test
     {
         var sorters = new List<BaseSort<int>>
         {
-            // new BubbleSort<int>(),
-            // new BubbleSort_1<int>(),
-            new BubbleSort_2<int>(),
+            new BubbleSort<int>(),
             new SelectionSort<int>(),
             new HeapSort<int>(),
             new InsertionSort<int>()

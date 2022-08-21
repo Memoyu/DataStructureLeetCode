@@ -12,10 +12,10 @@ public class InsertionSort<T> : BaseSort<T> where T : IComparable<T>
 
         // 最原始的方式：交换元素
         // Sort_1();
-        // 最原始的方式：挪动元素
-        Sort_2();
-        
-        
+        // 优化方式：挪动元素
+        // Sort_2();
+        // 再优化方式：挪动元素 + 二分搜索确定插入位置
+        Sort_3();
     }
 
     private void Sort_1()
@@ -51,5 +51,55 @@ public class InsertionSort<T> : BaseSort<T> where T : IComparable<T>
 
             array[curr] = value;
         }
+    }
+
+    private void Sort_3()
+    {
+        // 外层循环，用于遍历待排序区元素
+        for (int begin = 1; begin < array.Length; begin++)
+        {
+            // 获取当前待排序的元素
+            var value = array[begin];
+            // 使用二分搜索得到待排序元素最终插入的位置
+            var insertIndex = BinarySearch(begin);
+            // 将begin（原待排序元素位置）到插入位置 -1（insertIndex - 1） 的元素向后挪动 
+            for (int i = begin; i > insertIndex; i--)
+            {
+                array[i] = array[i - 1];
+            }
+
+            array[insertIndex] = value;
+        }
+    }
+
+    /// <summary>
+    /// 利用二分搜索找到待排序元素最终要插入的位置
+    /// </summary>
+    /// <param name="index">待排序元素的索引</param>
+    /// <returns></returns>
+    private int BinarySearch(int index)
+    {
+        // 从0 - index 位置中找到最终插入的位置
+        var begin = 0;
+        var end = index;
+        while (begin < end)
+        {
+            // 确认mid，也就是确认begin到end范围内的中间索引
+            var mid = (begin + end) >> 1;
+            // 判断index与mid对应元素的大小，从而决定在mid的左边找，还是右边找
+            if (Cmp(index, mid) < 0)
+            {
+                // 从mid的左边找，即范围【 begin, mid)
+                end = mid;
+            }
+            else
+            {
+                // 从mid的右边找，即范围【 mid + 1, end)
+                begin = mid + 1;
+            }
+        }
+
+        // 最终begin则为插入位置索引
+        return begin;
     }
 }
