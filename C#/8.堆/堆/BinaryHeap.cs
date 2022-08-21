@@ -10,6 +10,26 @@ public class BinaryHeap<T> : Heap<T> where T : IComparable<T>
     {
         _array = new T [10];
     }
+    
+    public BinaryHeap(T []? values)
+    {
+        if (values == null || values.Length == 0)
+        {
+            _array = new T [10];
+        }
+        else
+        {
+            // 将数据迁移到堆中
+            _array = new T[values.Length];
+            _size = values.Length;
+            for (int i = 0; i < values.Length; i++)
+            {
+                _array[i] = values[i];
+            }
+            Heapify();
+        }
+        
+    }
 
     public int Size()
     {
@@ -87,6 +107,17 @@ public class BinaryHeap<T> : Heap<T> where T : IComparable<T>
         }
 
         return root;
+    }
+
+    private void Heapify()
+    {
+        // 进行原地批量建堆
+        // 根据二叉堆的【自上而下的下滤】可知需要进行下滤的元素只有非叶子节点；
+        // 且根据完全二叉树性质，可得非叶子节点个数为 _size / 2 = _size >> 1，则最后一个元素为(_size >> 1) - 1；
+        for (int i = (_size >> 1) - 1 ; i >= 0; i--)
+        {
+            SiftDown(i);
+        }
     }
 
     /// <summary>

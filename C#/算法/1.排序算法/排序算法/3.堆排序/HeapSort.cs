@@ -16,6 +16,7 @@ public class HeapSort<T> : BaseSort<T> where T : IComparable<T>
             SiftDown(i);
         }
 
+        // 当剩下最后一个元素时，标识排序完成
         while (_heapSize > 1)
         {
             // 交换堆顶元素和尾部元素，并减少对大小，过滤已排序元素
@@ -35,13 +36,12 @@ public class HeapSort<T> : BaseSort<T> where T : IComparable<T>
         var half = (_heapSize >> 1);
         while (index < half)
         {
-            var childIndex = (index >> 1) + 1;
+            var childIndex = (index << 1) + 1;
             var child = array[childIndex];
 
             var rightIndex = childIndex + 1;
-            var rightValue = array[rightIndex];
             if (rightIndex < _heapSize &&
-                child.CompareTo(rightValue) < 0)
+                child.CompareTo(array[rightIndex]) < 0)
             {
                 childIndex = rightIndex;
                 child = array[childIndex];

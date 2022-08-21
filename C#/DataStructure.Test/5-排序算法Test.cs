@@ -7,6 +7,8 @@ using Xunit.Abstractions;
 using 排序算法;
 using 排序算法._1.冒泡排序;
 using 排序算法._2.选择排序;
+using 排序算法._3.堆排序;
+using 排序算法._4.插入排序;
 
 namespace DataStructrue.Test;
 
@@ -42,7 +44,9 @@ public class _5_排序算法Test
             // new BubbleSort<int>(),
             // new BubbleSort_1<int>(),
             new BubbleSort_2<int>(),
-            new SelectionSort<int>()
+            new SelectionSort<int>(),
+            new HeapSort<int>(),
+            new InsertionSort<int>()
         };
 
         foreach (var sorter in sorters)
@@ -51,7 +55,7 @@ public class _5_排序算法Test
             sorter.Sort(arr);
             Assert.True(IsAscOrder(arr));
         }
-        
+
         sorters.Sort();
 
         foreach (var sorter in sorters)

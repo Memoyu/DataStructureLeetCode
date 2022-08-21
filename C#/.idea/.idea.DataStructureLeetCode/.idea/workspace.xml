@@ -10,8 +10,11 @@
     <projectFile>算法/1.排序算法/排序算法/排序算法.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0c2d57f-21b7-483d-88be-147e5562314a" name="Changes" comment="fix：divisor error">
+    <list default="true" id="a0c2d57f-21b7-483d-88be-147e5562314a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/4.插入排序/InsertionSort.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DataStructureLeetCode/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DataStructureLeetCode/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/8.堆/堆/BinaryHeap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/8.堆/堆/BinaryHeap.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure.Test/5-排序算法Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure.Test/5-排序算法Test.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/算法/1.排序算法/排序算法/3.堆排序/HeapSort.cs" beforeDir="false" afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/3.堆排序/HeapSort.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,8 +24,6 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d4f98ebdd878db4fbd98872756eb7be6ad9e468fe5cd6b16385d8c4993109a/List.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/moyume/Workspace/github/memoyu/data structure/DataStructureLeetCode/C#/8.堆/堆/BinaryHeap.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="mock:///Users/moyume/Workspace/github/memoyu/data structure/DataStructureLeetCode/C#/DataStructure.Test/5-排序算法Test.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -47,7 +48,7 @@
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-  <component name="RunManager">
+  <component name="RunManager" selected=".NET Project.链表">
     <configuration name="链表" type="DotNetProject" factoryName=".NET Project">
       <option name="EXE_PATH" value="" />
       <option name="PROGRAM_PARAMETERS" value="" />
@@ -187,7 +188,8 @@
       <workItem from="1660443894588" duration="6064000" />
       <workItem from="1660485007409" duration="5612000" />
       <workItem from="1660576480440" duration="663000" />
-      <workItem from="1660961138576" duration="11772000" />
+      <workItem from="1660961138576" duration="12050000" />
+      <workItem from="1661059240262" duration="6696000" />
     </task>
     <task id="LOCAL-00001" summary="feat：add selection sort">
       <created>1660448293340</created>
@@ -224,7 +226,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660988795818</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="feat：completed binary heap">
+      <created>1660990942403</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1660990942403</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -250,25 +259,7 @@
     <MESSAGE value="fix：optimization while" />
     <MESSAGE value="feat：compeleted binary heap accomplish" />
     <MESSAGE value="fix：divisor error" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix：divisor error" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/8.堆/堆/BinaryHeap.cs</url>
-          <line>88</line>
-          <properties documentPath="$PROJECT_DIR$/8.堆/堆/BinaryHeap.cs" initialLine="88" containingFunctionPresentation="method 'Replace'">
-            <startOffsets>
-              <option value="1499" />
-            </startOffsets>
-            <endOffsets>
-              <option value="1511" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="feat：completed binary heap" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat：completed binary heap" />
   </component>
 </project>
