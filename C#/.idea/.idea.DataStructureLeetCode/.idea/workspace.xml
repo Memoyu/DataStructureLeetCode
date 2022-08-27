@@ -10,13 +10,10 @@
     <projectFile>算法/1.排序算法/排序算法/排序算法.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0c2d57f-21b7-483d-88be-147e5562314a" name="Changes" comment="feat:add insertion sort">
+    <list default="true" id="a0c2d57f-21b7-483d-88be-147e5562314a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/5.归并排序/MergeSort.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DataStructureLeetCode/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DataStructureLeetCode/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataStructure.Test/5-排序算法Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure.Test/5-排序算法Test.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/算法/1.排序算法/排序算法/1.冒泡排序/BubbleSort.cs" beforeDir="false" afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/1.冒泡排序/BubbleSort.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/算法/1.排序算法/排序算法/1.冒泡排序/BubbleSort_1.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/算法/1.排序算法/排序算法/1.冒泡排序/BubbleSort_2.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/算法/1.排序算法/排序算法/4.插入排序/InsertionSort.cs" beforeDir="false" afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/4.插入排序/InsertionSort.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,7 +187,10 @@
       <workItem from="1660485007409" duration="5612000" />
       <workItem from="1660576480440" duration="663000" />
       <workItem from="1660961138576" duration="12050000" />
-      <workItem from="1661059240262" duration="10221000" />
+      <workItem from="1661059240262" duration="11028000" />
+      <workItem from="1661437254146" duration="78000" />
+      <workItem from="1661437368590" duration="657000" />
+      <workItem from="1661566652286" duration="4528000" />
     </task>
     <task id="LOCAL-00001" summary="feat：add selection sort">
       <created>1660448293340</created>
@@ -241,7 +241,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661070704036</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="feat：add optimized insertion sort and adjusted bubble sort">
+      <created>1661075068856</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1661075068856</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,6 +276,7 @@
     <MESSAGE value="fix：divisor error" />
     <MESSAGE value="feat：completed binary heap" />
     <MESSAGE value="feat:add insertion sort" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat:add insertion sort" />
+    <MESSAGE value="feat：add optimized insertion sort and adjusted bubble sort" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat：add optimized insertion sort and adjusted bubble sort" />
   </component>
 </project>

@@ -9,6 +9,7 @@ using 排序算法._1.冒泡排序;
 using 排序算法._2.选择排序;
 using 排序算法._3.堆排序;
 using 排序算法._4.插入排序;
+using 排序算法._5.归并排序;
 
 namespace DataStructrue.Test;
 
@@ -44,7 +45,8 @@ public class _5_排序算法Test
             new BubbleSort<int>(),
             new SelectionSort<int>(),
             new HeapSort<int>(),
-            new InsertionSort<int>()
+            new InsertionSort<int>(),
+            new MergeSort<int>()
         };
 
         foreach (var sorter in sorters)
