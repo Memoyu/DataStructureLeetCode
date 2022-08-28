@@ -10,6 +10,8 @@ using 排序算法._2.选择排序;
 using 排序算法._3.堆排序;
 using 排序算法._4.插入排序;
 using 排序算法._5.归并排序;
+using 排序算法._6.快速排序;
+using 排序算法._7.希尔排序;
 
 namespace DataStructrue.Test;
 
@@ -23,8 +25,8 @@ public class _5_排序算法Test
     {
         _output = output;
 
-        var range = 100000;
-        var cnt = 10000;
+        var range = 30000;
+        var cnt = 20000;
         // var range = 100;
         // var cnt = 10;
         _array = new int[cnt];
@@ -46,7 +48,9 @@ public class _5_排序算法Test
             new SelectionSort<int>(),
             new HeapSort<int>(),
             new InsertionSort<int>(),
-            new MergeSort<int>()
+            new MergeSort<int>(),
+            new QuickSort<int>(),
+            new ShellSort<int>()
         };
 
         foreach (var sorter in sorters)

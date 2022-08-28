@@ -11,9 +11,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0c2d57f-21b7-483d-88be-147e5562314a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/5.归并排序/MergeSort.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/6.快速排序/QuickSort.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/7.希尔排序/ShellSort.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DataStructureLeetCode/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DataStructureLeetCode/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DataStructure.Test/5-排序算法Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure.Test/5-排序算法Test.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/算法/1.排序算法/排序算法/3.堆排序/HeapSort.cs" beforeDir="false" afterPath="$PROJECT_DIR$/算法/1.排序算法/排序算法/3.堆排序/HeapSort.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +44,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -190,7 +192,9 @@
       <workItem from="1661059240262" duration="11028000" />
       <workItem from="1661437254146" duration="78000" />
       <workItem from="1661437368590" duration="657000" />
-      <workItem from="1661566652286" duration="4528000" />
+      <workItem from="1661566652286" duration="9045000" />
+      <workItem from="1661640987394" duration="6638000" />
+      <workItem from="1661688986621" duration="4027000" />
     </task>
     <task id="LOCAL-00001" summary="feat：add selection sort">
       <created>1660448293340</created>
@@ -248,7 +252,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661075068856</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="feat：add merge sort">
+      <created>1661585875100</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1661585875100</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -277,6 +288,7 @@
     <MESSAGE value="feat：completed binary heap" />
     <MESSAGE value="feat:add insertion sort" />
     <MESSAGE value="feat：add optimized insertion sort and adjusted bubble sort" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat：add optimized insertion sort and adjusted bubble sort" />
+    <MESSAGE value="feat：add merge sort" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat：add merge sort" />
   </component>
 </project>
