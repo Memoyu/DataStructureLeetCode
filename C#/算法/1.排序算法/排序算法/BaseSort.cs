@@ -2,6 +2,8 @@
 using System.Diagnostics;
 using System.Runtime.Intrinsics.X86;
 using 排序算法._1.冒泡排序;
+using 排序算法._7.希尔排序;
+using 排序算法._8.计数排序;
 
 namespace 排序算法;
 
@@ -10,10 +12,13 @@ public abstract class BaseSort<T> : IComparable<BaseSort<T>>
 {
     // 排序数组
     protected T[] array { get; set; }
+
     // 比对计数器
     private int _cmpCnt;
+
     // 交换计数器
     private int _swapCnt;
+
     // 排序耗时
     private long _time;
 
@@ -102,11 +107,11 @@ public abstract class BaseSort<T> : IComparable<BaseSort<T>>
         var swapCountStr = "交换：" + NumberString(_swapCnt);
         var stableStr = "稳定性：" + IsStable();
         return "【" + GetType().Name + "】\n"
-                + stableStr + " \t"
-                + timeStr + " \t"
-                + compareCountStr + "\t "
-                + swapCountStr + "\n"
-                + "------------------------------------------------------------------";
+               + stableStr + " \t"
+               + timeStr + " \t"
+               + compareCountStr + "\t "
+               + swapCountStr + "\n"
+               + "------------------------------------------------------------------";
     }
 
     /// <summary>
@@ -123,14 +128,16 @@ public abstract class BaseSort<T> : IComparable<BaseSort<T>>
 
     public bool IsStable()
     {
+        if (GetType() == typeof(CountingSort)) return false;
+        if (GetType() == typeof(ShellSort<int>)) return false;
         var students = new Student[20];
         for (int i = 0; i < students.Count(); i++)
         {
             students[i] = new Student(i * 10, 10);
         }
-        
-        var type = GetType().GetGenericTypeDefinition().MakeGenericType(typeof(Student));//根据类型参数获取具象泛型
-        var sort =(BaseSort<Student>) Activator.CreateInstance(type);
+
+        var type = GetType().GetGenericTypeDefinition().MakeGenericType(typeof(Student)); //根据类型参数获取具象泛型
+        var sort = (BaseSort<Student>)Activator.CreateInstance(type);
         sort.Sort(students);
         for (int i = 1; i < students.Length; i++)
         {
@@ -138,13 +145,13 @@ public abstract class BaseSort<T> : IComparable<BaseSort<T>>
             int prevScore = students[i - 1].Score;
             if (score != prevScore + 10) return false;
         }
+
         return true;
     }
 }
 
 public class Student : IComparable<Student>
 {
-
     public int Score { get; set; }
     public int Age { get; set; }
 
