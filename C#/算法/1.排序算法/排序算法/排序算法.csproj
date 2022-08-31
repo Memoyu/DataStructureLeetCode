@@ -9,7 +9,6 @@
 
   <ItemGroup>
     <Folder Include="10.桶排序" />
-    <Folder Include="9.基数排序" />
   </ItemGroup>
 
 </Project>

@@ -47,6 +47,9 @@ public class CountingSort : BaseSort<int>
         }
     }
 
+    /// <summary>
+    /// 优化排序，优化基础版本存在问题
+    /// </summary>
     private void Sort_1()
     {
         // 获取序列最大值、最小值
