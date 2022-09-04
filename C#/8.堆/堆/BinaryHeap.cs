@@ -1,6 +1,6 @@
 namespace 二叉堆;
 
-public class BinaryHeap<T> : Heap<T> where T : IComparable<T>
+public class BinaryHeap<T> : IHeap<T> where T : IComparable<T>
 {
     private T[] _array;
 

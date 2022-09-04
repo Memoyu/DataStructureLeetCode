@@ -1,6 +1,6 @@
 namespace 二叉堆;
 
-public interface Heap<T> where T : IComparable<T>
+public interface IHeap<T> where T : IComparable<T>
 {
     /// <summary>
     /// 元素的数量
