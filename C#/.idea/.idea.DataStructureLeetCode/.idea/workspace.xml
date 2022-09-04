@@ -11,18 +11,10 @@
     <projectFile>算法/1.排序算法/排序算法/排序算法.csproj</projectFile>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a0c2d57f-21b7-483d-88be-147e5562314a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/DataStructure.Test/9-并查集Test.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并查集/UnionFind_QU_R_PC.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并查集/UnionFind_QU_R_PH.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并查集/UnionFind_QU_R_PS.cs" afterDir="false" />
+    <list default="true" id="a0c2d57f-21b7-483d-88be-147e5562314a" name="Changes" comment="feat：add union find optimization and file adjust">
+      <change afterPath="$PROJECT_DIR$/并查集/GenericUnionFind.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DataStructureLeetCode/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DataStructureLeetCode/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataStructure.Test/1-链表Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure.Test/1-链表Test.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataStructure.Test/2-栈Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure.Test/2-栈Test.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataStructure.Test/3-队列Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure.Test/3-队列Test.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataStructure.Test/4-二叉树Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure.Test/4-二叉树Test.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataStructure.Test/5-排序算法Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure.Test/算法/1-排序算法Test.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DataStructure.Test/DataStructure.Test.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure.Test/DataStructure.Test.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure.Test/9-并查集Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure.Test/9-并查集Test.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +23,7 @@
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d4f98ebdd878db4fbd98872756eb7be6ad9e468fe5cd6b16385d8c4993109a/List.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fe765148c82eb785877dcf89a4206ad54969b2bd5fff9cc88e3f9a7e2489/Object.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -224,7 +217,7 @@
       <workItem from="1661955221311" duration="2495000" />
       <workItem from="1662192247121" duration="2534000" />
       <workItem from="1662216983191" duration="6254000" />
-      <workItem from="1662252778809" duration="3413000" />
+      <workItem from="1662252778809" duration="7487000" />
     </task>
     <task id="LOCAL-00001" summary="feat：add selection sort">
       <created>1660448293340</created>
@@ -331,7 +324,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662221833182</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="feat：add union find optimization and file adjust">
+      <created>1662258741915</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1662258741915</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -367,23 +367,24 @@
     <MESSAGE value="feat：add partial radix sort implementation" />
     <MESSAGE value="feat：add basic union find" />
     <MESSAGE value="feat：add union find quick union optimization" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat：add union find quick union optimization" />
+    <MESSAGE value="feat：add union find optimization and file adjust" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat：add union find optimization and file adjust" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/DataStructure.Test/9-并查集Test.cs</url>
-          <line>74</line>
-          <properties documentPath="$PROJECT_DIR$/DataStructure.Test/9-并查集Test.cs" initialLine="74" containingFunctionPresentation="method 'TestOutput'">
+          <url>file://$PROJECT_DIR$/并查集/GenericUnionFind.cs</url>
+          <line>22</line>
+          <properties documentPath="$PROJECT_DIR$/并查集/GenericUnionFind.cs" initialLine="22" containingFunctionPresentation="method 'FindNode'">
             <startOffsets>
-              <option value="1830" />
+              <option value="491" />
             </startOffsets>
             <endOffsets>
-              <option value="1840" />
+              <option value="537" />
             </endOffsets>
           </properties>
-          <option name="timeStamp" value="1" />
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
