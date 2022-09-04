@@ -3,7 +3,7 @@ using Xunit.Abstractions;
 using 队列.实现队列;
 using static 队列._225_用队列实现栈;
 
-namespace DataStructrue.Test;
+namespace DataStructure.Test;
 
 
 public class _3_队列Test

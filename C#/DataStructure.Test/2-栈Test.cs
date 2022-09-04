@@ -1,7 +1,7 @@
 using Xunit;
 using 栈;
 
-namespace 链表.Test;
+namespace DataStructure.Test;
 
 public class 栈Test
 {

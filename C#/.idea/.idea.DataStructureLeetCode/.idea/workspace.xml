@@ -12,11 +12,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a0c2d57f-21b7-483d-88be-147e5562314a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/并查集/UnionFind_QU_R.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/并查集/UnionFind_QU_S.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DataStructure.Test/9-并查集Test.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并查集/UnionFind_QU_R_PC.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并查集/UnionFind_QU_R_PH.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/并查集/UnionFind_QU_R_PS.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.DataStructureLeetCode/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.DataStructureLeetCode/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/并查集/UnionFind_QF.cs" beforeDir="false" afterPath="$PROJECT_DIR$/并查集/UnionFind_QF.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/并查集/UnionFind_QU.cs" beforeDir="false" afterPath="$PROJECT_DIR$/并查集/UnionFind_QU.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure.Test/1-链表Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure.Test/1-链表Test.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure.Test/2-栈Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure.Test/2-栈Test.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure.Test/3-队列Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure.Test/3-队列Test.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure.Test/4-二叉树Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure.Test/4-二叉树Test.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure.Test/5-排序算法Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure.Test/算法/1-排序算法Test.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DataStructure.Test/DataStructure.Test.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/DataStructure.Test/DataStructure.Test.csproj" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,7 +223,8 @@
       <workItem from="1661786546448" duration="1355000" />
       <workItem from="1661955221311" duration="2495000" />
       <workItem from="1662192247121" duration="2534000" />
-      <workItem from="1662216983191" duration="4140000" />
+      <workItem from="1662216983191" duration="6254000" />
+      <workItem from="1662252778809" duration="3413000" />
     </task>
     <task id="LOCAL-00001" summary="feat：add selection sort">
       <created>1660448293340</created>
@@ -317,7 +324,14 @@
       <option name="project" value="LOCAL" />
       <updated>1662199226297</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="feat：add union find quick union optimization">
+      <created>1662221833182</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1662221833182</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -352,6 +366,26 @@
     <MESSAGE value="feat：optimize counting sort" />
     <MESSAGE value="feat：add partial radix sort implementation" />
     <MESSAGE value="feat：add basic union find" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat：add basic union find" />
+    <MESSAGE value="feat：add union find quick union optimization" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat：add union find quick union optimization" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/DataStructure.Test/9-并查集Test.cs</url>
+          <line>74</line>
+          <properties documentPath="$PROJECT_DIR$/DataStructure.Test/9-并查集Test.cs" initialLine="74" containingFunctionPresentation="method 'TestOutput'">
+            <startOffsets>
+              <option value="1830" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1840" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

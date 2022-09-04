@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text.Json;
 using Xunit;
 using Xunit.Abstractions;
 using 排序算法;
@@ -14,15 +13,15 @@ using 排序算法._6.快速排序;
 using 排序算法._7.希尔排序;
 using 排序算法._8.计数排序;
 
-namespace DataStructrue.Test;
+namespace DataStructure.Test.算法;
 
-public class _5_排序算法Test
+public class _1_排序算法Test
 {
     private readonly ITestOutputHelper _output;
 
     private readonly int[] _array;
 
-    public _5_排序算法Test(ITestOutputHelper output)
+    public _1_排序算法Test(ITestOutputHelper output)
     {
         _output = output;
 

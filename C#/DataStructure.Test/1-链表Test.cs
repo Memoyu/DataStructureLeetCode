@@ -1,6 +1,7 @@
 using Xunit;
+using 链表;
 
-namespace 链表.Test;
+namespace DataStructure.Test;
 public class 链表Test
 {
     [Fact]

@@ -1,12 +1,11 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Xunit;
 using Xunit.Abstractions;
 using 二叉树;
-using 二叉树.二叉树.二叉搜索树;
 using 二叉树.二叉树.Base;
+using 二叉树.二叉树.二叉搜索树;
 
-namespace DataStructrue.Test;
+namespace DataStructure.Test;
 
 public class _4_二叉树Test
 {
