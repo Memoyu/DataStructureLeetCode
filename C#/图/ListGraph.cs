@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace 图;
 
 public class ListGraph<TV, TW> : IGraph<TV, TW>
@@ -40,11 +42,11 @@ public class ListGraph<TV, TW> : IGraph<TV, TW>
         if (!toExist)
         {
             toVertex = new Vertex<TV, TW>(to);
-            _vertices.Add(from, toVertex);
+            _vertices.Add(to, toVertex);
         }
 
         // 构建新的边
-        var edge = new Edge<TV, TW>();
+        var edge = new Edge<TV, TW>(fromVertex, toVertex);
         edge.Weight = weight;
         
         // 此处为了节省操作，直接删除，有的话就删除出度成功，并且删除入度，否则不操作
@@ -66,9 +68,23 @@ public class ListGraph<TV, TW> : IGraph<TV, TW>
         // 尝试移除节点
         var remove = _vertices.Remove(value, out var vertex);
         if (!remove) return; // 移除成功并继续操作
-        
-        
-        
+        var iterableOut = vertex.OutEdges.GetEnumerator();
+        while (iterableOut.MoveNext())
+        {
+            var egde = iterableOut.Current;
+            egde.To.InEdges.Remove(egde);
+            vertex.OutEdges.Remove(egde);
+            _edges.Remove(egde);
+        }
+
+        var iterableIn = vertex.InEdges.GetEnumerator();
+        while (iterableIn.MoveNext())
+        {
+            var egde = iterableIn.Current;
+            egde.From.OutEdges.Remove(egde);
+            vertex.InEdges.Remove(egde);
+            _edges.Remove(egde);
+        }
     }
     
     public void RemoveEdge(TV from, TV to)
@@ -80,13 +96,35 @@ public class ListGraph<TV, TW> : IGraph<TV, TW>
         if (!toExist) return;
         
         // 删除边
-        var edge = new Edge<TV, TW>();
+        var edge = new Edge<TV, TW>(fromVertex, toVertex);
         if (fromVertex.OutEdges.Remove(edge))
         {
             toVertex.InEdges.Remove(edge);
             // 移除全局edge
             _edges.Remove(edge);
         }
+    }
+    
+    public string Print()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.Append("[顶点]-------------------\n");
+        foreach (var v in _vertices)
+        {
+            sb.Append($"{v.Key}\n" );
+            sb.Append("out-----------\n");
+            sb.Append($"{string.Join("\n", v.Value.OutEdges)}\n");
+            sb.Append("in-----------\n");
+            sb.Append($"{string.Join("\n", v.Value.InEdges )}\n");
+        }
+
+        sb.Append("[边]-------------------\n");
+        foreach (var e in _edges)
+        {
+            sb.Append($"{e}\n");
+        }
+
+        return sb.ToString();
     }
 }
 
@@ -124,6 +162,11 @@ internal class Vertex<TV, TW>
     {
         return Value is null ? 0 : Value.GetHashCode();
     }
+
+    public override string ToString()
+    {
+        return Value == null ? "null" : Value.ToString();
+    }
 }
 
 /// <summary>
@@ -133,6 +176,12 @@ internal class Vertex<TV, TW>
 /// <typeparam name="TW">权值类型</typeparam>
 internal class Edge<TV, TW>
 {
+    public Edge(Vertex<TV, TW>from, Vertex<TV, TW>to)
+    {
+        From = from;
+        To = to;
+    }
+    
     /// <summary>
     /// 起点顶点
     /// </summary>
@@ -159,5 +208,10 @@ internal class Edge<TV, TW>
         int fromCode = From.GetHashCode();
         int toCode = To.GetHashCode();
         return fromCode * 31 + toCode;
+    }
+    
+    public override string ToString()
+    {
+        return "Edge [from=" + From + ", to=" + To + ", weight=" + Weight + "]";
     }
 }

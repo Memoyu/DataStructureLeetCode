@@ -25,6 +25,7 @@
     <ProjectReference Include="..\2.栈\栈\栈.csproj" />
     <ProjectReference Include="..\3.队列\队列\队列.csproj" />
     <ProjectReference Include="..\4.二叉树\二叉树\二叉树.csproj" />
+    <ProjectReference Include="..\图\图.csproj" />
     <ProjectReference Include="..\并查集\并查集.csproj" />
     <ProjectReference Include="..\算法\1.排序算法\排序算法\排序算法.csproj" />
   </ItemGroup>
