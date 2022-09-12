@@ -47,4 +47,18 @@ public interface IGraph<TV, TW>
     /// <param name="from">起始节点</param>
     /// <param name="to">终止节点</param>
     void RemoveEdge(TV from, TV to);
+
+    /// <summary>
+    /// 图遍历：广度优先搜索（Breadth First Search，BFS）
+    /// </summary>
+    /// <param name="value">起点位置，类似根节点</param>
+    /// <param name="func">遍历操作，返回true则终止操作</param>
+    void Bfs(TV value, Func<TV, bool> func);
+    
+    /// <summary>
+    /// 图遍历：深度优先搜索（Depth First Search，DFS）
+    /// </summary>
+    /// <param name="value">起点位置，类似根节点</param>
+    /// <param name="func">遍历操作，返回true则终止操作</param>
+    void Dfs(TV value, Func<TV, bool> func);
 } 

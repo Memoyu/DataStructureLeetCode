@@ -48,7 +48,7 @@ public class ListGraph<TV, TW> : IGraph<TV, TW>
         // 构建新的边
         var edge = new Edge<TV, TW>(fromVertex, toVertex);
         edge.Weight = weight;
-        
+
         // 此处为了节省操作，直接删除，有的话就删除出度成功，并且删除入度，否则不操作
         if (fromVertex.OutEdges.Remove(edge))
         {
@@ -86,7 +86,7 @@ public class ListGraph<TV, TW> : IGraph<TV, TW>
             _edges.Remove(egde);
         }
     }
-    
+
     public void RemoveEdge(TV from, TV to)
     {
         // 节点不存在则结束
@@ -94,7 +94,7 @@ public class ListGraph<TV, TW> : IGraph<TV, TW>
         if (!fromExist) return;
         var toExist = _vertices.TryGetValue(to, out var toVertex);
         if (!toExist) return;
-        
+
         // 删除边
         var edge = new Edge<TV, TW>(fromVertex, toVertex);
         if (fromVertex.OutEdges.Remove(edge))
@@ -104,18 +104,87 @@ public class ListGraph<TV, TW> : IGraph<TV, TW>
             _edges.Remove(edge);
         }
     }
-    
+
+    public void Bfs(TV value, Func<TV, bool> func)
+    {
+        if (func == null) return;
+        // 类似于二叉树层序遍历，故可使用队列进行实现
+        var queue = new Queue<Vertex<TV, TW>>();
+
+        // 需要引入HashSet存储遍历过的节点，并在遍历过程中排除这些节点
+        var visitedVertices = new HashSet<Vertex<TV, TW>>();
+        var beginVertex = _vertices[value];
+        queue.Enqueue(beginVertex);
+        visitedVertices.Add(beginVertex);
+
+        // 队列不为空则继续进行遍历操作
+        while (queue.Count > 0)
+        {
+            var vertex = queue.Dequeue();
+            // 外部控制是否需要终止操作
+            if (func(vertex.Value)) return;
+
+            // 遍历节点的所有边
+            foreach (var edge in vertex.OutEdges)
+            {
+                // 校验该边的终节点是否已经遍历过，是则终止本次操作，否则继续
+                if (visitedVertices.Contains(edge.To)) continue;
+                queue.Enqueue(edge.To);
+                visitedVertices.Add(edge.To);
+            }
+        }
+    }
+
+    public void Dfs(TV value, Func<TV, bool> func)
+    {
+        if (func == null) return;
+        var beginVertex = _vertices[value];
+        // 类似于二叉树的前序遍历，故可使用如下两种方式实现
+        // 递归版本
+        var visitedVertices = new HashSet<Vertex<TV, TW>>();
+        DfsRecursive(beginVertex,visitedVertices, func);
+        // 非递归版本
+        // DfsNonRecursive(beginVertex, func);
+    }
+
+    /// <summary>
+    /// 递归实现 深度优先搜索
+    /// </summary>
+    /// <param name="vertex"></param>
+    /// <param name="visitedVertices"></param>
+    /// <param name="func"></param>
+    private void DfsRecursive(Vertex<TV, TW> vertex,HashSet<Vertex<TV, TW>> visitedVertices, Func<TV, bool> func)
+    {
+        if (vertex == null) return;
+        if (func(vertex.Value)) return;
+        visitedVertices.Add(vertex);
+        foreach (var edge in vertex.OutEdges)
+        {
+            if (visitedVertices.Contains(edge.To)) continue;
+            DfsRecursive(edge.To, visitedVertices, func);
+        }
+    }
+
+    /// <summary>
+    /// 非递归实现 深度优先搜索
+    /// </summary>
+    /// <param name="begin"></param>
+    /// <param name="func"></param>
+    private void DfsNonRecursive(Vertex<TV, TW> begin, Func<TV, bool> func)
+    {
+    }
+
     public string Print()
     {
         StringBuilder sb = new StringBuilder();
         sb.Append("[顶点]-------------------\n");
         foreach (var v in _vertices)
         {
-            sb.Append($"{v.Key}\n" );
+            sb.Append($"{v.Key}\n");
             sb.Append("out-----------\n");
             sb.Append($"{string.Join("\n", v.Value.OutEdges)}\n");
             sb.Append("in-----------\n");
-            sb.Append($"{string.Join("\n", v.Value.InEdges )}\n");
+            sb.Append($"{string.Join("\n", v.Value.InEdges)}\n");
         }
 
         sb.Append("[边]-------------------\n");
@@ -176,12 +245,12 @@ internal class Vertex<TV, TW>
 /// <typeparam name="TW">权值类型</typeparam>
 internal class Edge<TV, TW>
 {
-    public Edge(Vertex<TV, TW>from, Vertex<TV, TW>to)
+    public Edge(Vertex<TV, TW> from, Vertex<TV, TW> to)
     {
         From = from;
         To = to;
     }
-    
+
     /// <summary>
     /// 起点顶点
     /// </summary>
@@ -209,7 +278,7 @@ internal class Edge<TV, TW>
         int toCode = To.GetHashCode();
         return fromCode * 31 + toCode;
     }
-    
+
     public override string ToString()
     {
         return "Edge [from=" + From + ", to=" + To + ", weight=" + Weight + "]";
