@@ -142,9 +142,9 @@ public class ListGraph<TV, TW> : IGraph<TV, TW>
         // 类似于二叉树的前序遍历，故可使用如下两种方式实现
         // 递归版本
         var visitedVertices = new HashSet<Vertex<TV, TW>>();
-        DfsRecursive(beginVertex,visitedVertices, func);
+        // DfsRecursive(beginVertex,visitedVertices, func);
         // 非递归版本
-        // DfsNonRecursive(beginVertex, func);
+        DfsNonRecursive(beginVertex, visitedVertices, func);
     }
 
     /// <summary>
@@ -153,7 +153,7 @@ public class ListGraph<TV, TW> : IGraph<TV, TW>
     /// <param name="vertex"></param>
     /// <param name="visitedVertices"></param>
     /// <param name="func"></param>
-    private void DfsRecursive(Vertex<TV, TW> vertex,HashSet<Vertex<TV, TW>> visitedVertices, Func<TV, bool> func)
+    private void DfsRecursive(Vertex<TV, TW> vertex, HashSet<Vertex<TV, TW>> visitedVertices, Func<TV, bool> func)
     {
         if (vertex == null) return;
         if (func(vertex.Value)) return;
@@ -168,10 +168,39 @@ public class ListGraph<TV, TW> : IGraph<TV, TW>
     /// <summary>
     /// 非递归实现 深度优先搜索
     /// </summary>
-    /// <param name="begin"></param>
+    /// <param name="vertex"></param>
+    /// <param name="visitedVertices"></param>
     /// <param name="func"></param>
-    private void DfsNonRecursive(Vertex<TV, TW> begin, Func<TV, bool> func)
+    private void DfsNonRecursive(Vertex<TV, TW> vertex, HashSet<Vertex<TV, TW>> visitedVertices, Func<TV, bool> func)
     {
+        var stack = new Stack<Vertex<TV, TW>>();
+
+        // 访问起点
+        stack.Push(vertex);
+        if (func(vertex.Value)) return;
+        visitedVertices.Add(vertex);
+
+        // 读栈中节点，
+        while (stack.Count > 0)
+        {
+            // 弹出栈顶节点
+            vertex = stack.Pop();
+            
+            // 遍历节点的出度边，此处一次只会遍历其中一条边
+            foreach (var edge in vertex.OutEdges)
+            {
+                // 如果节点的To已经被访问过，则结束
+                if (visitedVertices.Contains(edge.To)) continue;
+                
+                // 将节点的From、To添加到栈中、添加到已访问记录中，以及执行操作
+                stack.Push(edge.From);
+                stack.Push(edge.To);
+                visitedVertices.Add(edge.To);
+                if (func(edge.To.Value)) return;
+                // 终止本次遍历
+                break;
+            }
+        }
     }
 
     public string Print()
