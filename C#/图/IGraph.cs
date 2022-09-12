@@ -61,4 +61,10 @@ public interface IGraph<TV, TW>
     /// <param name="value">起点位置，类似根节点</param>
     /// <param name="func">遍历操作，返回true则终止操作</param>
     void Dfs(TV value, Func<TV, bool> func);
+
+    /// <summary>
+    /// 拓扑排序
+    /// </summary>
+    /// <returns>排序后的Value</returns>
+    List<TV> TopologicalSort();
 } 

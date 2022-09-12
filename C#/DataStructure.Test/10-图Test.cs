@@ -97,7 +97,17 @@ public class _10_图Test
         Assert.Equal("c,b,e,f", string.Join(",", result));
     }
 
-    
+    /// <summary>
+    /// 拓扑排序Test
+    /// </summary>
+    [Fact]
+    public void TopologicalSortTest()
+    {
+        var graph = DirectedGraph(TestData.TOPO);
+        var result = graph.TopologicalSort();
+        Assert.Equal("3,1,0,2,5,7,6,4", string.Join(",", result));
+    }
+
     /// <summary>
     /// 有向图
     /// </summary>

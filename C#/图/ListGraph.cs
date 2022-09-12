@@ -147,6 +147,59 @@ public class ListGraph<TV, TW> : IGraph<TV, TW>
         DfsNonRecursive(beginVertex, visitedVertices, func);
     }
 
+    public List<TV> TopologicalSort()
+    {
+        // 最终排序完成后结果集
+        var sorts = new List<TV>();
+        // 队列存储入度为0的节点
+        var queue = new Queue<Vertex<TV, TW>>();
+        // 字段存储入度大于0的节点，并在后期操作中维护入度数值
+        var ins = new Dictionary<TV, int>();
+
+        // 初始化队列以及入度计数集合
+        foreach (var vertex in _vertices.Values)
+        {
+            var cnt = vertex.InEdges.Count;
+            // 入度为0则直接存入队列等待排序
+            if (cnt == 0)
+            {
+                queue.Enqueue(vertex);
+            }
+            else
+            {
+                ins.Add(vertex.Value, cnt);
+            }
+        }
+        
+        // 遍历队列
+        while (queue.Count > 0)
+        {
+            // 出队，并将出队的节点值加入排序序列
+            var vertex = queue.Dequeue();
+            sorts.Add(vertex.Value);
+            
+            // 遍历该节点的所有出度边，并将边的终节点的入度（ins）进行递减
+            foreach (var edge in vertex.OutEdges)
+            {
+                // 获取边的终结点
+                var to = edge.To;
+                // 递减
+                var cnt = ins[to.Value] - 1;
+                // 如果等于0，则将节点入队，否则重新赋值入度数值
+                if (cnt == 0 )
+                {
+                    queue.Enqueue(to);
+                }
+                else
+                {
+                    ins[to.Value] = cnt;
+                }
+            }
+        }
+
+        return sorts;
+    }
+
     /// <summary>
     /// 递归实现 深度优先搜索
     /// </summary>
