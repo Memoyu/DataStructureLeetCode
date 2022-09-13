@@ -2,33 +2,38 @@ using System.Text;
 
 namespace 图;
 
-public class ListGraph<TV, TW> : IGraph<TV, TW>
+public class ListGraph<TV, TW> : Graph<TV, TW>
 {
     private Dictionary<TV, Vertex<TV, TW>> _vertices = new();
     private HashSet<Edge<TV, TW>> _edges = new();
 
-    public int EdgesSize()
+    public ListGraph(WeightManager<TW> weightManager) : base(weightManager)
+    {
+        
+    }
+    
+    public override int EdgesSize()
     {
         return _edges.Count;
     }
 
-    public int VerticesSize()
+    public override int VerticesSize()
     {
         return _vertices.Count;
     }
 
-    public void AddVertex(TV value)
+    public override void AddVertex(TV value)
     {
         if (_vertices.ContainsKey(value)) return;
         _vertices.Add(value, new Vertex<TV, TW>(value));
     }
 
-    public void AddEdge(TV from, TV to)
+    public override void AddEdge(TV from, TV to)
     {
         AddEdge(from, to, default);
     }
 
-    public void AddEdge(TV from, TV to, TW weight)
+    public override void AddEdge(TV from, TV to, TW weight)
     {
         // from、to 是否存在，不存在则进行新增节点
         var fromExist = _vertices.TryGetValue(from, out var fromVertex);
@@ -63,7 +68,7 @@ public class ListGraph<TV, TW> : IGraph<TV, TW>
         _edges.Add(edge);
     }
 
-    public void RemoveVertex(TV value)
+    public override void RemoveVertex(TV value)
     {
         // 尝试移除节点
         var remove = _vertices.Remove(value, out var vertex);
@@ -87,7 +92,7 @@ public class ListGraph<TV, TW> : IGraph<TV, TW>
         }
     }
 
-    public void RemoveEdge(TV from, TV to)
+    public override void RemoveEdge(TV from, TV to)
     {
         // 节点不存在则结束
         var fromExist = _vertices.TryGetValue(from, out var fromVertex);
@@ -105,7 +110,7 @@ public class ListGraph<TV, TW> : IGraph<TV, TW>
         }
     }
 
-    public void Bfs(TV value, Func<TV, bool> func)
+    public override void Bfs(TV value, Func<TV, bool> func)
     {
         if (func == null) return;
         // 类似于二叉树层序遍历，故可使用队列进行实现
@@ -135,7 +140,7 @@ public class ListGraph<TV, TW> : IGraph<TV, TW>
         }
     }
 
-    public void Dfs(TV value, Func<TV, bool> func)
+    public override void Dfs(TV value, Func<TV, bool> func)
     {
         if (func == null) return;
         var beginVertex = _vertices[value];
@@ -147,7 +152,7 @@ public class ListGraph<TV, TW> : IGraph<TV, TW>
         DfsNonRecursive(beginVertex, visitedVertices, func);
     }
 
-    public List<TV> TopologicalSort()
+    public override List<TV> TopologicalSort()
     {
         // 最终排序完成后结果集
         var sorts = new List<TV>();
@@ -226,6 +231,7 @@ public class ListGraph<TV, TW> : IGraph<TV, TW>
     /// <param name="func"></param>
     private void DfsNonRecursive(Vertex<TV, TW> vertex, HashSet<Vertex<TV, TW>> visitedVertices, Func<TV, bool> func)
     {
+        // 结合理解：https://www.yuque.com/memoyu/ezn2kr/tdx86s#yDsRp
         var stack = new Stack<Vertex<TV, TW>>();
 
         // 访问起点

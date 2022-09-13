@@ -12,6 +12,7 @@ public class _10_图Test
 {
     private int count = 1000000;
     private readonly ITestOutputHelper _output;
+    private static readonly WeightManager<double> _doubleWeightManager = new DoubleWeightManager();
 
     public _10_图Test(ITestOutputHelper output)
     {
@@ -21,7 +22,7 @@ public class _10_图Test
     [Fact]
     public void GraphTest()
     {
-        ListGraph<string, int> graph = new();
+        ListGraph<string, double> graph = new(_doubleWeightManager);
         graph.AddEdge("V1", "V0", 9);
         graph.AddEdge("V1", "V2", 3);
         graph.AddEdge("V2", "V0", 2);
@@ -113,9 +114,9 @@ public class _10_图Test
     /// </summary>
     /// <param name="data"></param>
     /// <returns></returns>
-    private static IGraph<object, double> DirectedGraph(object[][] data)
+    private static Graph<object, double> DirectedGraph(object[][] data)
     {
-        var graph = new ListGraph<object, double>();
+        var graph = new ListGraph<object, double>(_doubleWeightManager);
         foreach (var edge in data)
         {
             if (edge.Length == 1)
@@ -141,9 +142,9 @@ public class _10_图Test
     /// </summary>
     /// <param name="data"></param>
     /// <returns></returns>
-    private static IGraph<object, double> UnDirectedGraph(object[][] data)
+    private static Graph<object, double> UnDirectedGraph(object[][] data)
     {
-        var graph = new ListGraph<object, double>();
+        var graph = new ListGraph<object, double>(_doubleWeightManager);
         foreach (var edge in data)
         {
             if (edge.Length == 1)
@@ -164,5 +165,23 @@ public class _10_图Test
         }
 
         return graph;
+    }
+}
+
+public class DoubleWeightManager : WeightManager<double>
+{
+    public int Compare(double w1, double w2)
+    {
+        return w1.CompareTo(w2);
+    }
+
+    public double Add(double w1, double w2)
+    {
+        return w1 + w2;
+    }
+
+    public double Zero()
+    {
+        throw new NotImplementedException();
     }
 }
