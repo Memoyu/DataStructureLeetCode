@@ -352,7 +352,7 @@ public class ListGraph<TV, TW> : Graph<TV, TW>
         return edgeInfos;
     }
 
-    public override Dictionary<TV, PathInfo<TV, TW>> ShortestPath(TV begin, int type)
+    public override Dictionary<TV, PathInfo<TV, TW>> SingleSourceShortestPath(TV begin, int type)
     {
         if (type == 0)
         {
@@ -492,7 +492,7 @@ public class ListGraph<TV, TW> : Graph<TV, TW>
                 RelaxForBellmanFord(edge, fromPath, selectedPaths);
             }
         }
-        
+
         // 检测图中是否存在负权环
         foreach (var edge in _edges)
         {
@@ -542,10 +542,100 @@ public class ListGraph<TV, TW> : Graph<TV, TW>
         {
             oldPath.EdgeInfos.AddLast(edgeInfo);
         }
-
         oldPath.EdgeInfos.AddLast(edge.GetInfo());
 
         return true;
+    }
+
+    public override Dictionary<TV, Dictionary<TV, PathInfo<TV, TW>>> MultiSourceShortestPath()
+    {
+        var paths = new Dictionary<TV, Dictionary<TV, PathInfo<TV, TW>>>();
+        // 初始化paths，将
+        foreach (var edge in _edges)
+        {
+            // 从paths中获取From节点的所有最短路径信息
+            var exist = paths.TryGetValue(edge.From.Value, out Dictionary<TV, PathInfo<TV, TW>> dic);
+            // 如果不存在，则构造最短路径信息，并添加到paths中
+            if (!exist)
+            {
+                dic = new Dictionary<TV, PathInfo<TV, TW>>();
+                paths.Add(edge.From.Value, dic);
+            }
+
+            // 构造最短路径信息，并将当前边默认作为最短路径添加进最短路径集合中
+            var pathInfo = new PathInfo<TV, TW>(edge.Weight);
+            pathInfo.EdgeInfos.AddLast(edge.GetInfo());
+            // 将to作为from的其中一条最短路径加入结果集中
+            dic.Add(edge.To.Value, pathInfo);
+        }
+        
+        // 进行遍历
+        foreach (var kv2 in _vertices)
+        {
+            foreach (var kv1 in _vertices)
+            {
+                foreach (var kv3 in _vertices)
+                {
+                    var v1 = kv1.Key;
+                    var v2 = kv2.Key;
+                    var v3 = kv3.Key;
+                    var vertex1 = kv1.Value;
+                    var vertex2 = kv2.Value;
+                    var vertex3 = kv3.Value;
+                    
+                    // 如果节点值相同，则终止本次操作
+                    if (v1.Equals(v2) || v2.Equals(v3) || v1.Equals(v3)) continue;
+                    
+                    // v1 -> v2
+                    var pathInfo12 = GetPathInfo(v1, v2, paths);
+                    if (pathInfo12 == null) continue;
+                    
+                    // v2 -> v3
+                    var pathInfo23 = GetPathInfo(v2, v3, paths);
+                    if (pathInfo23 == null) continue;
+                    
+                    // v1 -> v3
+                    var pathInfo13 = GetPathInfo(v1, v3, paths);
+
+                    // 获取 v1 -> v3 的最新权值 = athInfo12.Weight + pathInfo23.Weight
+                    var newWeight = WeightManager.Add(pathInfo12.Weight, pathInfo23.Weight);
+                    if (pathInfo13 != null && WeightManager.Compare(newWeight, pathInfo13.Weight) >= 0) continue;
+                    if (pathInfo13 == null)
+                    {
+                        pathInfo13 = new PathInfo<TV, TW>();
+                        paths[v1].Add(v3, pathInfo13);
+                    }
+                    else
+                    {
+                        pathInfo13.EdgeInfos.Clear();
+                    }
+
+                    pathInfo13.Weight = newWeight;
+                    
+                    // 将v1 -> v2的最短路径添加到 v1 -> v3最短路径集合中
+                    foreach (var edgeInfo in pathInfo12.EdgeInfos)
+                    {
+                        pathInfo13.EdgeInfos.AddLast(edgeInfo);
+                    }
+                    
+                    // 将v2 -> v3的最短路径添加到 v1 -> v3最短路径集合中
+                    foreach (var edgeInfo in pathInfo23.EdgeInfos)
+                    {
+                        pathInfo13.EdgeInfos.AddLast(edgeInfo);
+                    }
+
+                }
+            }
+        }
+        
+        
+        return paths;
+        
+        PathInfo<TV, TW> GetPathInfo(TV from, TV to, Dictionary<TV,Dictionary<TV,PathInfo<TV,TW>>> paths)
+        {
+            var exist = paths.TryGetValue(from, out Dictionary<TV, PathInfo<TV, TW>> dic);
+            return exist ? dic.TryGetValue(to, out PathInfo<TV, TW> pathInfo) ? pathInfo : null : null;
+        }
     }
 
     public string Print()

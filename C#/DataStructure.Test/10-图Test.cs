@@ -200,13 +200,13 @@ public class _10_图Test
     }
 
     /// <summary>
-    /// 最短路径Test
+    /// 单源最短路径Test
     /// </summary>
     [Fact]
-    public void ShortestByDijkstraTest()
+    public void SingleSourceShortestByDijkstraTest()
     {
         var graph = UnDirectedGraph(TestData.SP);
-        var result = graph.ShortestPath("A",0);
+        var result = graph.SingleSourceShortestPath("A",0);
         foreach (var r in result)
         {
             _output.WriteLine($"{r.Key} - {r.Value}");
@@ -214,15 +214,34 @@ public class _10_图Test
     }
     
     [Fact]
-    public void ShortestByBellmanFordTest()
+    public void SingleSourceShortestByBellmanFordTest()
     {
         var graph = DirectedGraph(TestData.NEGATIVE_WEIGHT1);
-        var result = graph.ShortestPath("A",1);
+        var result = graph.SingleSourceShortestPath("A",1);
         foreach (var r in result)
         {
             _output.WriteLine($"{r.Key} - {r.Value}");
         }
     }
+    
+    /// <summary>
+    /// 多源最短路径Test
+    /// </summary>
+    [Fact]
+    public void MultiSourceShortestByBellmanFordTest()
+    {
+        var graph = DirectedGraph(TestData.SP);
+        var result = graph.MultiSourceShortestPath();
+        foreach (var f in result)
+        {
+            _output.WriteLine(f.Key + " ---------------------");
+            foreach (var t in f.Value)
+            {
+                _output.WriteLine(t.Key + " - " + t.Value);
+            }
+        }
+    }
+    
 
     /// <summary>
     /// 有向图

@@ -88,12 +88,19 @@ public abstract class Graph<TV, TW>
     public abstract List<EdgeInfo<TV, TW>> Mst(int type);
     
     /// <summary>
-    /// 获取最最短路径
+    /// 单源最短路径
     /// </summary>
     /// <param name="begin">其实节点值</param>
     /// <param name="type">0：使用Dijkstra；1：使用BellmanFord;</param>
     /// <returns></returns>
-    public abstract Dictionary<TV, PathInfo<TV, TW>> ShortestPath(TV begin, int type);
+    public abstract Dictionary<TV, PathInfo<TV, TW>> SingleSourceShortestPath(TV begin, int type);
+    
+    /// <summary>
+    /// 多源最短路径
+    /// 使用Floyd算法
+    /// </summary>
+    /// <returns>TV 能到达的所有节点的最短路径信息</returns>
+    public abstract Dictionary<TV, Dictionary<TV, PathInfo<TV, TW>>> MultiSourceShortestPath();
 }
 
 /// <summary>
