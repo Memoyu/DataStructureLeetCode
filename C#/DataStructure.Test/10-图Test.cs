@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using Xunit;
 using Xunit.Abstractions;
 using 图;
@@ -12,7 +13,7 @@ public class _10_图Test
 {
     private int count = 1000000;
     private readonly ITestOutputHelper _output;
-    private static readonly WeightManager<double> _doubleWeightManager = new DoubleWeightManager();
+    private static readonly IWeightManager<double> _doubleWeightManager = new DoubleWeightManager();
 
     public _10_图Test(ITestOutputHelper output)
     {
@@ -40,7 +41,7 @@ public class _10_图Test
     /// 广度优先搜索遍历Test
     /// </summary>
     [Fact]
-    public void GraphBfsTest()
+    public void BfsTest()
     {
         // Test 1
         _output.WriteLine("------------Test1------------");
@@ -71,7 +72,7 @@ public class _10_图Test
     /// 深度优先搜索遍历Test
     /// </summary>
     [Fact]
-    public void GraphDfsTest()
+    public void DfsTest()
     {
         // Test 1
         _output.WriteLine("------------Test1------------");
@@ -107,6 +108,106 @@ public class _10_图Test
         var graph = DirectedGraph(TestData.TOPO);
         var result = graph.TopologicalSort();
         Assert.Equal("3,1,0,2,5,7,6,4", string.Join(",", result));
+    }
+
+    /// <summary>
+    /// 最小生成树Test
+    /// </summary>
+    [Fact]
+    public void MstByPrimTest()
+    {
+        _output.WriteLine("----------------MST-By-Prim-01--------------");
+        var graph = UnDirectedGraph(TestData.MST_01);
+        var result = graph.Mst(0);
+        var actuals = new List<EdgeInfo<object, double>>
+        {
+            new(0, 2, 2),
+            new(2, 1, 3),
+            new(1, 5, 1),
+            new(5, 6, 4),
+            new(2, 4, 4),
+            new(5, 7, 5),
+            new(7, 3, 9),
+        };
+
+        foreach (var r in result)
+        {
+            _output.WriteLine(r.ToString());
+            Assert.Contains(actuals, e => e.From.Equals(r.From) && e.To.Equals(r.To) && e.Weight == r.Weight);
+        }
+
+        _output.WriteLine("----------------MST-By-Prim-02--------------");
+
+        graph = UnDirectedGraph(TestData.MST_02);
+        result = graph.Mst(0);
+        actuals = new List<EdgeInfo<object, double>>
+        {
+            new("A", "F", 1),
+            new("F", "B", 11),
+            new("B", "D", 5),
+            new("D", "E", 4),
+            new("B", "C", 6),
+        };
+
+        foreach (var r in result)
+        {
+            _output.WriteLine(r.ToString());
+            Assert.Contains(actuals, e => e.From.Equals(r.From) && e.To.Equals(r.To) && e.Weight == r.Weight);
+        }
+    }
+
+    [Fact]
+    public void MstByKruskalTest()
+    {
+        _output.WriteLine("----------------MST-By-Kruskal-01--------------");
+        var graph = UnDirectedGraph(TestData.MST_01);
+        var result = graph.Mst(1);
+        var actuals = new List<EdgeInfo<object, double>>
+        {
+            new(1, 5, 1),
+            new(2, 0, 2),
+            new(2, 1, 3),
+            new(5, 6, 4),
+            new(2, 4, 4),
+            new(7, 5, 5),
+            new(3, 7, 9),
+        };
+
+        foreach (var r in result)
+        {
+            _output.WriteLine(r.ToString());
+            Assert.Contains(actuals, e =>  e.From.Equals(r.From) && e.To.Equals(r.To) && e.Weight == r.Weight);
+        }
+
+        _output.WriteLine("----------------MST-By-Kruskal-02--------------");
+
+        graph = UnDirectedGraph(TestData.MST_02);
+        result = graph.Mst(1);
+        actuals = new List<EdgeInfo<object, double>>
+        {
+            new("A", "F", 1),
+            new("D", "E", 4),
+            new("B", "D", 5),
+            new("B", "C", 6),
+            new("B", "F", 11),
+        };
+
+        foreach (var r in result)
+        {
+            _output.WriteLine(r.ToString());
+            Assert.Contains(actuals, e =>  e.From.Equals(r.From) && e.To.Equals(r.To) && e.Weight == r.Weight);
+        }
+    }
+
+    [Fact]
+    public void ShortestByDijkstraTest()
+    {
+        var graph = UnDirectedGraph(TestData.SP);
+        var result = graph.ShortestPath("A",0);
+        foreach (var r in result)
+        {
+            _output.WriteLine($"{r.Key} - {r.Value}");
+        }
     }
 
     /// <summary>
@@ -168,7 +269,7 @@ public class _10_图Test
     }
 }
 
-public class DoubleWeightManager : WeightManager<double>
+public class DoubleWeightManager : IWeightManager<double>
 {
     public int Compare(double w1, double w2)
     {
@@ -182,6 +283,6 @@ public class DoubleWeightManager : WeightManager<double>
 
     public double Zero()
     {
-        throw new NotImplementedException();
+        return 0d;
     }
 }

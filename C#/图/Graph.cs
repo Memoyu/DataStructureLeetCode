@@ -2,14 +2,14 @@ namespace 图;
 
 public abstract class Graph<TV, TW>
 {
-    public WeightManager<TW> WeightManager { get; set; }
+    protected IWeightManager<TW> WeightManager { get;}
 
     public Graph()
     {
         
     }
     
-    public Graph(WeightManager<TW> weightManager)
+    public Graph(IWeightManager<TW> weightManager)
     {
         WeightManager = weightManager;
     }
@@ -81,26 +81,78 @@ public abstract class Graph<TV, TW>
     public abstract List<TV> TopologicalSort();
 
     /// <summary>
-    /// 对外部返回的边信息
+    /// 获取最小生成树
     /// </summary>
-    public class EdgeInfo
+    /// <param name="type">0：使用Prim；1：使用Kruskal;</param>
+    /// <returns></returns>
+    public abstract List<EdgeInfo<TV, TW>> Mst(int type);
+    
+    /// <summary>
+    /// 获取最最短路径
+    /// </summary>
+    /// <param name="begin">其实节点值</param>
+    /// <param name="type">0：使用Dijkstra；1：使用BellmanFord;</param>
+    /// <returns></returns>
+    public abstract Dictionary<TV, PathInfo<TV, TW>> ShortestPath(TV begin, int type);
+}
+
+/// <summary>
+/// 最短路径信息
+/// </summary>
+public class PathInfo<TV, TW>
+{
+    /// <summary>
+    /// 最短路径权值总和
+    /// </summary>
+    public TW Weight { get; set; }
+
+    /// <summary>
+    /// 最短路径边信息
+    /// </summary>
+    public LinkedList<EdgeInfo<TV, TW>> EdgeInfos { get; set; } = new();
+
+    public PathInfo()
     {
-        public TV To { get; set; }
+        
+    }
 
-        public TV From { get; set; }
-
-        public TW Weight { get; set; }
-
-        public EdgeInfo(TV to, TV from, TW weight)
-        {
-            To = to;
-            From = from;
-            Weight = weight;
-        }
+    public PathInfo(TW weight)
+    {
+        Weight = weight;
+    }
+    
+    public override string ToString()
+    {
+        return $"PathInfo [ Weight={Weight}, PathInfos={string.Join(", ", EdgeInfos)} ]";
     }
 }
 
-public interface WeightManager<TW>
+
+/// <summary>
+/// 对外部返回的边信息
+/// </summary>
+public class EdgeInfo<TV, TW>
+{
+    public TV To { get; set; }
+
+    public TV From { get; set; }
+
+    public TW Weight { get; set; }
+
+    public EdgeInfo( TV from, TV to, TW weight)
+    {
+        From = from;
+        To = to;
+        Weight = weight;
+    }
+
+    public override string ToString()
+    {
+        return $"EdgeInfo [ From={From}, To={To}, Weight={Weight} ]";
+    }
+}
+
+public interface IWeightManager<TW>
 {
     int Compare(TW w1, TW w2);
     TW Add(TW w1, TW w2);
