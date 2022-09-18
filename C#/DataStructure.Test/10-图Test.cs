@@ -203,7 +203,7 @@ public class _10_图Test
     /// 单源最短路径Test
     /// </summary>
     [Fact]
-    public void SingleSourceShortestByDijkstraTest()
+    public void SingleSourceShortestPathByDijkstraTest()
     {
         var graph = UnDirectedGraph(TestData.SP);
         var result = graph.SingleSourceShortestPath("A",0);
@@ -214,7 +214,7 @@ public class _10_图Test
     }
     
     [Fact]
-    public void SingleSourceShortestByBellmanFordTest()
+    public void SingleSourceShortestPathByBellmanFordTest()
     {
         var graph = DirectedGraph(TestData.NEGATIVE_WEIGHT1);
         var result = graph.SingleSourceShortestPath("A",1);
@@ -228,7 +228,7 @@ public class _10_图Test
     /// 多源最短路径Test
     /// </summary>
     [Fact]
-    public void MultiSourceShortestByBellmanFordTest()
+    public void MultiSourceShortestPathByBellmanFordTest()
     {
         var graph = DirectedGraph(TestData.SP);
         var result = graph.MultiSourceShortestPath();
