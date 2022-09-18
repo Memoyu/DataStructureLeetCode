@@ -199,11 +199,25 @@ public class _10_图Test
         }
     }
 
+    /// <summary>
+    /// 最短路径Test
+    /// </summary>
     [Fact]
     public void ShortestByDijkstraTest()
     {
         var graph = UnDirectedGraph(TestData.SP);
         var result = graph.ShortestPath("A",0);
+        foreach (var r in result)
+        {
+            _output.WriteLine($"{r.Key} - {r.Value}");
+        }
+    }
+    
+    [Fact]
+    public void ShortestByBellmanFordTest()
+    {
+        var graph = DirectedGraph(TestData.NEGATIVE_WEIGHT1);
+        var result = graph.ShortestPath("A",1);
         foreach (var r in result)
         {
             _output.WriteLine($"{r.Key} - {r.Value}");

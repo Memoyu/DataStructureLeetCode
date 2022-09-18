@@ -436,14 +436,13 @@ public class ListGraph<TV, TW> : Graph<TV, TW>
     private void RelaxForDijkstra(Edge<TV, TW> edge, PathInfo<TV, TW> path,
         Dictionary<Vertex<TV, TW>, PathInfo<TV, TW>> paths)
     {
-        
         // 新的可选择的最短路径：beginVertex到edge.from的最短路径(path.Weight) + edge.weight
         var newWeight = WeightManager.Add(path.Weight, edge.Weight);
-        
+
         // 获取以前的最短路径：beginVertex到edge.to的最短路径
         var exist = paths.TryGetValue(edge.To, out PathInfo<TV, TW> oldPath);
         // 如果新的路径比旧的路径还要大，则不需要进行松弛操作
-        if(exist && WeightManager.Compare(newWeight, oldPath.Weight) >= 0) return;
+        if (exist && WeightManager.Compare(newWeight, oldPath.Weight) >= 0) return;
 
         // 如果paths中不存在，则需要添加，否则进行原有edgeInfos清空
         if (oldPath == null)
@@ -456,12 +455,13 @@ public class ListGraph<TV, TW> : Graph<TV, TW>
             oldPath.EdgeInfos.Clear();
         }
 
-        // 对新权重、最短路径信息进行赋值
+        // 对新权值、最短路径信息进行赋值
         oldPath.Weight = newWeight;
         foreach (var edgeInfo in path.EdgeInfos)
         {
             oldPath.EdgeInfos.AddLast(edgeInfo);
         }
+
         oldPath.EdgeInfos.AddLast(edge.GetInfo());
     }
 
@@ -472,9 +472,80 @@ public class ListGraph<TV, TW> : Graph<TV, TW>
     /// <returns></returns>
     private Dictionary<TV, PathInfo<TV, TW>> BellmanFord(TV begin)
     {
-        var selectedPaths = new Dictionary<TV, PathInfo<TV, TW>>();
+        // 校验begin
+        var beginVertex = _vertices[begin];
+        if (beginVertex == null) return null;
 
+        // 初始化 已确定最短路径、待确定最短路径 数据字典
+        var selectedPaths = new Dictionary<TV, PathInfo<TV, TW>>();
+        selectedPaths.Add(begin, new PathInfo<TV, TW>(WeightManager.Zero()));
+
+        // 需要 V – 1 次松弛操作（ V 是节点数量）
+        var relaxCnt = _vertices.Count - 1;
+        for (int i = 0; i < relaxCnt; i++)
+        {
+            // 对所有的边进行松弛操作
+            foreach (var edge in _edges)
+            {
+                var fromPath = selectedPaths[edge.From.Value];
+                if (fromPath == null) continue;
+                RelaxForBellmanFord(edge, fromPath, selectedPaths);
+            }
+        }
+        
+        // 检测图中是否存在负权环
+        foreach (var edge in _edges)
+        {
+            var fromPath = selectedPaths[edge.From.Value];
+            if (fromPath == null) continue;
+            if (RelaxForBellmanFord(edge, fromPath, selectedPaths))
+            {
+                throw new Exception("图中存在负权环");
+            }
+        }
+
+        selectedPaths.Remove(begin);
         return selectedPaths;
+    }
+
+    /// <summary>
+    /// 松弛操作
+    /// </summary>
+    /// <param name="edge">边信息</param>
+    /// <param name="path">最小路径信息</param>
+    /// <param name="paths">已确定最短路径字典</param>
+    private bool RelaxForBellmanFord(Edge<TV, TW> edge, PathInfo<TV, TW> path,
+        Dictionary<TV, PathInfo<TV, TW>> paths)
+    {
+        // 新的可选择的最短路径：beginVertex到edge.from的最短路径(path.Weight) + edge.weight
+        var newWeight = WeightManager.Add(path.Weight, edge.Weight);
+
+        // 获取以前的最短路径：beginVertex到edge.to的最短路径
+        var exist = paths.TryGetValue(edge.To.Value, out PathInfo<TV, TW> oldPath);
+        // 如果新的路径比旧的路径还要大，则不需要进行松弛操作
+        if (exist && WeightManager.Compare(newWeight, oldPath.Weight) >= 0) return false;
+
+        // 如果paths中不存在，则需要添加，否则进行原有edgeInfos清空
+        if (oldPath == null)
+        {
+            oldPath = new PathInfo<TV, TW>();
+            paths.Add(edge.To.Value, oldPath);
+        }
+        else
+        {
+            oldPath.EdgeInfos.Clear();
+        }
+
+        // 对新权值、最短路径信息进行赋值
+        oldPath.Weight = newWeight;
+        foreach (var edgeInfo in path.EdgeInfos)
+        {
+            oldPath.EdgeInfos.AddLast(edgeInfo);
+        }
+
+        oldPath.EdgeInfos.AddLast(edge.GetInfo());
+
+        return true;
     }
 
     public string Print()
